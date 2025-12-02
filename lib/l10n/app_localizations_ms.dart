@@ -148,4 +148,102 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get googleSignInCancelled => 'Log Masuk Google dibatalkan.';
+
+  @override
+  String get settingsTitle => 'Tetapan Aplikasi';
+
+  @override
+  String get language => 'Bahasa';
+
+  @override
+  String get englishUK => 'English (UK)';
+
+  @override
+  String get bahasaMelayu => 'Bahasa Melayu';
+
+  @override
+  String get aiAnalysisMode => 'Mod Analisis AI';
+
+  @override
+  String get liveMode => 'Mod Langsung (Live)';
+
+  @override
+  String get nonLiveMode => 'Mod Bukan Langsung';
+
+  @override
+  String get liveModeSubtitle =>
+      'Kamera mengimbas secara berterusan (Penggunaan bateri tinggi)';
+
+  @override
+  String get nonLiveModeSubtitle => 'Tangkap gambar untuk menganalisis (Lalai)';
+
+  @override
+  String get theme => 'Tema';
+
+  @override
+  String get systemDefault => 'Lalai Sistem';
+
+  @override
+  String get lightMode => 'Mod Cerah';
+
+  @override
+  String get darkMode => 'Mod Gelap';
+
+  @override
+  String get personalInfoTitle => 'Maklumat Peribadi';
+
+  @override
+  String get sex => 'Jantina';
+
+  @override
+  String get male => 'Lelaki';
+
+  @override
+  String get female => 'Perempuan';
+
+  @override
+  String get selectSex => 'Pilih Jantina';
+
+  @override
+  String get dob => 'Tarikh Lahir';
+
+  @override
+  String get selectDate => 'Pilih Tarikh';
+
+  @override
+  String get phoneNumber => 'Nombor Telefon';
+
+  @override
+  String get pickupAddress => 'Alamat Kutipan';
+
+  @override
+  String get saveChanges => 'Simpan Perubahan';
+
+  @override
+  String get updateSuccess => 'Profil berjaya dikemaskini!';
+
+  @override
+  String get updateError => 'Gagal mengemaskini profil';
+
+  @override
+  String get loading => 'Memuatkan...';
+
+  @override
+  String get forgotPassword => 'Lupa Kata Laluan?';
+
+  @override
+  String get resetPasswordTitle => 'Tetapkan Semula Kata Laluan';
+
+  @override
+  String get resetPasswordDesc =>
+      'Masukkan emel anda. Kami akan menghantar pautan untuk cipta kata laluan baru.';
+
+  @override
+  String get sendResetLink => 'Hantar Pautan';
+
+  @override
+  String get resetEmailSent => 'Pautan dihantar! Semak emel anda.';
+
+  @override
+  String get cancel => 'Batal';
 }

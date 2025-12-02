@@ -133,6 +133,45 @@
     "failedTitle": "Verification Failed",
     "failedMessage": "The OTP you entered is incorrect.",
     "googleSignInFailed": "Google Sign-In failed. Please try again.",
-    "googleSignInCancelled": "Google Sign-In was cancelled."
+    "googleSignInCancelled": "Google Sign-In was cancelled.",
+
+    "settingsTitle": "App Settings",
+    "language": "Language",
+    "englishUK": "English (UK)",
+    "bahasaMelayu": "Bahasa Melayu",
+    
+    "aiAnalysisMode": "AI Analysis Mode",
+    "liveMode": "Live Mode",
+    "nonLiveMode": "Non-Live Mode",
+    "liveModeSubtitle": "Camera scans continuously (Higher battery usage)",
+    "nonLiveModeSubtitle": "Capture photo to analyze (Default)",
+    
+    "theme": "Theme",
+    "systemDefault": "System Default",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+
+    "personalInfoTitle": "Personal Information",
+    "fullName": "Full Name",
+    "email": "Email",
+    "sex": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "selectSex": "Select Sex",
+    "dob": "Date of Birth",
+    "selectDate": "Select Date",
+    "phoneNumber": "Phone Number",
+    "pickupAddress": "Pickup Address",
+    "saveChanges": "Save Changes",
+    "updateSuccess": "Profile updated successfully!",
+    "updateError": "Failed to update profile",
+    "loading": "Loading...",
+
+    "forgotPassword": "Forgot Password?",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordDesc": "Enter your email address. We will send you a link to create a new password.",
+    "sendResetLink": "Send Reset Link",
+    "resetEmailSent": "Reset link sent! Check your email.",
+    "cancel": "Cancel"
 }
 

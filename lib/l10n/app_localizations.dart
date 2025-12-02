@@ -361,6 +361,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Google Sign-In was cancelled.'**
   String get googleSignInCancelled;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @englishUK.
+  ///
+  /// In en, this message translates to:
+  /// **'English (UK)'**
+  String get englishUK;
+
+  /// No description provided for @bahasaMelayu.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Melayu'**
+  String get bahasaMelayu;
+
+  /// No description provided for @aiAnalysisMode.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Analysis Mode'**
+  String get aiAnalysisMode;
+
+  /// No description provided for @liveMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Mode'**
+  String get liveMode;
+
+  /// No description provided for @nonLiveMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-Live Mode'**
+  String get nonLiveMode;
+
+  /// No description provided for @liveModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera scans continuously (Higher battery usage)'**
+  String get liveModeSubtitle;
+
+  /// No description provided for @nonLiveModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture photo to analyze (Default)'**
+  String get nonLiveModeSubtitle;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @systemDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get systemDefault;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get lightMode;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @personalInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfoTitle;
+
+  /// No description provided for @sex.
+  ///
+  /// In en, this message translates to:
+  /// **'Sex'**
+  String get sex;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @selectSex.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Sex'**
+  String get selectSex;
+
+  /// No description provided for @dob.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of Birth'**
+  String get dob;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @pickupAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Address'**
+  String get pickupAddress;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @updateSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully!'**
+  String get updateSuccess;
+
+  /// No description provided for @updateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update profile'**
+  String get updateError;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @resetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordTitle;
+
+  /// No description provided for @resetPasswordDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address. We will send you a link to create a new password.'**
+  String get resetPasswordDesc;
+
+  /// No description provided for @sendResetLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get sendResetLink;
+
+  /// No description provided for @resetEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset link sent! Check your email.'**
+  String get resetEmailSent;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

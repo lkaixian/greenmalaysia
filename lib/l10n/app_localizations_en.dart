@@ -148,4 +148,102 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get googleSignInCancelled => 'Google Sign-In was cancelled.';
+
+  @override
+  String get settingsTitle => 'App Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get englishUK => 'English (UK)';
+
+  @override
+  String get bahasaMelayu => 'Bahasa Melayu';
+
+  @override
+  String get aiAnalysisMode => 'AI Analysis Mode';
+
+  @override
+  String get liveMode => 'Live Mode';
+
+  @override
+  String get nonLiveMode => 'Non-Live Mode';
+
+  @override
+  String get liveModeSubtitle =>
+      'Camera scans continuously (Higher battery usage)';
+
+  @override
+  String get nonLiveModeSubtitle => 'Capture photo to analyze (Default)';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get systemDefault => 'System Default';
+
+  @override
+  String get lightMode => 'Light Mode';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get personalInfoTitle => 'Personal Information';
+
+  @override
+  String get sex => 'Sex';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get selectSex => 'Select Sex';
+
+  @override
+  String get dob => 'Date of Birth';
+
+  @override
+  String get selectDate => 'Select Date';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get pickupAddress => 'Pickup Address';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get updateSuccess => 'Profile updated successfully!';
+
+  @override
+  String get updateError => 'Failed to update profile';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get forgotPassword => 'Forgot Password?';
+
+  @override
+  String get resetPasswordTitle => 'Reset Password';
+
+  @override
+  String get resetPasswordDesc =>
+      'Enter your email address. We will send you a link to create a new password.';
+
+  @override
+  String get sendResetLink => 'Send Reset Link';
+
+  @override
+  String get resetEmailSent => 'Reset link sent! Check your email.';
+
+  @override
+  String get cancel => 'Cancel';
 }

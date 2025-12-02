@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SettingsService extends ChangeNotifier {
+  // 1. Static final instance
+  static final SettingsService _instance = SettingsService._internal();
+
+  // 2. Factory constructor (Explicitly returns SettingsService)
+  factory SettingsService() {
+    return _instance;
+  }
+
+  // 3. Private internal constructor
+  SettingsService._internal();
+
+  // --- STATE VARIABLES ---
+  Locale _locale = const Locale('en', 'GB');
+  ThemeMode _themeMode = ThemeMode.system;
+  bool _isAiLiveMode = false;
+
+  // --- GETTERS ---
+  Locale get locale => _locale;
+  ThemeMode get themeMode => _themeMode;
+  bool get isAiLiveMode => _isAiLiveMode;
+
+  // --- INITIALIZATION ---
+  Future<void> loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Load Language
+    String? langCode = prefs.getString('language_code');
+    if (langCode != null) {
+      _locale = Locale(langCode, '');
+    }
+
+    // Load Theme
+    String? themeName = prefs.getString('theme_mode');
+    if (themeName == 'light')
+      _themeMode = ThemeMode.light;
+    else if (themeName == 'dark')
+      _themeMode = ThemeMode.dark;
+    else
+      _themeMode = ThemeMode.system;
+
+    // Load AI Mode
+    _isAiLiveMode = prefs.getBool('ai_live_mode') ?? false;
+
+    notifyListeners();
+  }
+
+  // --- SETTERS ---
+  Future<void> updateLocale(Locale newLocale) async {
+    if (_locale == newLocale) return;
+    _locale = newLocale;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', newLocale.languageCode);
+  }
+
+  Future<void> updateThemeMode(ThemeMode newTheme) async {
+    if (_themeMode == newTheme) return;
+    _themeMode = newTheme;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    String themeName = 'system';
+    if (newTheme == ThemeMode.light) themeName = 'light';
+    if (newTheme == ThemeMode.dark) themeName = 'dark';
+    await prefs.setString('theme_mode', themeName);
+  }
+
+  Future<void> updateAiMode(bool isLive) async {
+    if (_isAiLiveMode == isLive) return;
+    _isAiLiveMode = isLive;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('ai_live_mode', isLive);
+  }
+}
