@@ -246,4 +246,16 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get cancel => 'Batal';
+
+  @override
+  String get advanced => 'Lanjutan';
+
+  @override
+  String get unlockAdvanced => 'Buka Ciri Lanjutan';
+
+  @override
+  String get radiusSet => 'Jejari Navigasi (m)';
+
+  @override
+  String get radiusHelp => 'Had jarak untuk pengesanan GPS';
 }

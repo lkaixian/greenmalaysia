@@ -5,7 +5,7 @@ class SettingsService extends ChangeNotifier {
   // 1. Static final instance
   static final SettingsService _instance = SettingsService._internal();
 
-  // 2. Factory constructor (Explicitly returns SettingsService)
+  // 2. Factory constructor
   factory SettingsService() {
     return _instance;
   }
@@ -18,10 +18,14 @@ class SettingsService extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
   bool _isAiLiveMode = false;
 
+  // NEW: Navigation Radius (Default 50 meters)
+  int _navRadius = 50;
+
   // --- GETTERS ---
   Locale get locale => _locale;
   ThemeMode get themeMode => _themeMode;
   bool get isAiLiveMode => _isAiLiveMode;
+  int get navRadius => _navRadius; // NEW Getter
 
   // --- INITIALIZATION ---
   Future<void> loadSettings() async {
@@ -35,15 +39,19 @@ class SettingsService extends ChangeNotifier {
 
     // Load Theme
     String? themeName = prefs.getString('theme_mode');
-    if (themeName == 'light')
+    if (themeName == 'light') {
       _themeMode = ThemeMode.light;
-    else if (themeName == 'dark')
+    } else if (themeName == 'dark') {
       _themeMode = ThemeMode.dark;
-    else
+    } else {
       _themeMode = ThemeMode.system;
+    }
 
     // Load AI Mode
     _isAiLiveMode = prefs.getBool('ai_live_mode') ?? false;
+
+    // NEW: Load Radius
+    _navRadius = prefs.getInt('nav_radius') ?? 50;
 
     notifyListeners();
   }
@@ -74,5 +82,14 @@ class SettingsService extends ChangeNotifier {
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('ai_live_mode', isLive);
+  }
+
+  // NEW: Update Radius
+  Future<void> updateNavRadius(int newRadius) async {
+    if (_navRadius == newRadius) return;
+    _navRadius = newRadius;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('nav_radius', newRadius);
   }
 }

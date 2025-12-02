@@ -553,6 +553,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advanced;
+
+  /// No description provided for @unlockAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Advanced Features'**
+  String get unlockAdvanced;
+
+  /// No description provided for @radiusSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation Radius (m)'**
+  String get radiusSet;
+
+  /// No description provided for @radiusHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance threshold for GPS detection'**
+  String get radiusHelp;
 }
 
 class _AppLocalizationsDelegate

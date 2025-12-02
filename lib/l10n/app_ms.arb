@@ -81,5 +81,10 @@
     "resetPasswordDesc": "Masukkan emel anda. Kami akan menghantar pautan untuk cipta kata laluan baru.",
     "sendResetLink": "Hantar Pautan",
     "resetEmailSent": "Pautan dihantar! Semak emel anda.",
-    "cancel": "Batal"
+    "cancel": "Batal",
+
+    "advanced": "Lanjutan",
+    "unlockAdvanced": "Buka Ciri Lanjutan",
+    "radiusSet": "Jejari Navigasi (m)",
+    "radiusHelp": "Had jarak untuk pengesanan GPS"
 }

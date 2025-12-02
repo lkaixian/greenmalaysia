@@ -172,6 +172,11 @@
     "resetPasswordDesc": "Enter your email address. We will send you a link to create a new password.",
     "sendResetLink": "Send Reset Link",
     "resetEmailSent": "Reset link sent! Check your email.",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+
+    "advanced": "Advanced",
+    "unlockAdvanced": "Unlock Advanced Features",
+    "radiusSet": "Navigation Radius (m)",
+    "radiusHelp": "Distance threshold for GPS detection"
 }
 

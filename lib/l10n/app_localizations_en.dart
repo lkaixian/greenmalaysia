@@ -246,4 +246,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get unlockAdvanced => 'Unlock Advanced Features';
+
+  @override
+  String get radiusSet => 'Navigation Radius (m)';
+
+  @override
+  String get radiusHelp => 'Distance threshold for GPS detection';
 }
