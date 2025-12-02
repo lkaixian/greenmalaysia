@@ -1,0 +1,138 @@
+{
+    "@@locale": "en",
+
+    "dashboardTitle": "Home Dashboard",
+    "@dashboardTitle": {
+        "description": "The main title displayed in the top AppBar of the home screen."
+    },
+
+    "analysis": "Analysis",
+    "@analysis": {
+        "description": "Label for the central Floating Action Button (FAB) that opens the camera."
+    },
+
+    "pickup": "Pickup",
+    "@pickup": {
+        "description": "Label for the navigation button used to schedule a recycling pickup."
+    },
+
+    "navigate": "Navigate",
+    "@navigate": {
+        "description": "Label for the navigation button used to open GPS maps."
+    },
+
+    "notifications": "Notifications",
+    "@notifications": {
+        "description": "Title displayed on the Notifications screen."
+    },
+
+    "profile": "Profile",
+    "@profile": {
+        "description": "Title displayed on the User Profile screen."
+    },
+
+    "welcomeMessage": "Welcome! Select an option below.",
+    "@welcomeMessage": {
+        "description": "The central body text shown to the user on the Home Screen before they interact."
+    },
+
+    "schedulePickup": "Schedule Pickup",
+    "@schedulePickup": {
+        "description": "AppBar title for the screen where users arrange a pickup time."
+    },
+
+    "gpsNavigation": "GPS Navigation",
+    "@gpsNavigation": {
+        "description": "AppBar title for the map and routing screen."
+    },
+
+    "aiAnalysis": "AI Analysis",
+    "@aiAnalysis": {
+        "description": "AppBar title for the camera viewfinder screen."
+    },
+
+    "captureAnalyze": "Capture & Analyze",
+    "@captureAnalyze": {
+        "description": "Text on the button that triggers the camera to take a picture."
+    },
+
+    "helloUser": "Hello, {userName}",
+    "@helloUser": {
+        "description": "Greeting displayed on the profile page with the user's name.",
+        "placeholders": {
+            "userName": {
+                "type": "String",
+                "example": "Ali"
+            }
+        }
+    },
+
+    "loginTitle": "Login",
+    "@loginTitle": { "description": "Title for the login screen" },
+
+    "fillAllFieldsError": "Please fill in all fields",
+    "@fillAllFieldsError": { "description": "Error message when inputs are empty" },
+
+    "appName": "GreenMalaysia",
+    "email": "Email",
+    "password": "Password",
+    "orText": "OR",
+    
+    "signInGoogle": "Sign in with Google",
+    "@signInGoogle": { "description": "Label for Google Sign In button" },
+
+    "signUpLink": "New User? Sign Up Here",
+    "@signUpLink": { "description": "Link text to go to registration page" },
+
+    "createAccount": "Create Account",
+    "@createAccount": { "description": "Title for sign up page" },
+
+    "fullName": "Full Name",
+    "birthDate": "Birth Date (DD/MM/YYYY)",
+
+    "agreeEula": "I agree to the EULA (Click to read)",
+    "@agreeEula": { "description": "Checkbox label for EULA" },
+
+    "eulaError": "Please agree to EULA",
+    "emailRequired": "Email required",
+
+    "eulaDialogTitle": "End User License Agreement",
+    "eulaDialogContent": "1. You agree to recycle.\n2. You agree to drive safely.\n3. You agree not to spam the API.",
+    "close": "Close",
+    "back": "Back",
+    "continueBtn": "Continue",
+
+    "verifyOtp": "Verify OTP",
+    "@verifyOtp": { "description": "Title for OTP screen" },
+
+    "otpSentPrompt": "Enter the code sent to\n{email}",
+    "@otpSentPrompt": {
+        "description": "Instruction text on OTP screen showing user email",
+        "placeholders": { "email": { "type": "String" } }
+    },
+
+    "resendTimer": "Resend code in {seconds} seconds",
+    "@resendTimer": {
+        "placeholders": { "seconds": { "type": "int" } }
+    },
+
+    "codeExpired": "Code expired.",
+    "resendNow": "Resend OTP Now",
+    "verifyBtn": "Verify",
+
+    "otpSentSnackbar": "OTP sent to {email}. (Code: {otp})",
+    "@otpSentSnackbar": {
+        "placeholders": {
+            "email": { "type": "String" },
+            "otp": { "type": "String" }
+        }
+    },
+
+    "verifiedTitle": "Verified!",
+    "verifiedMessage": "OTP is correct. Welcome aboard!",
+    "failedTitle": "Verification Failed",
+    "failedMessage": "The OTP you entered is incorrect.",
+    "googleSignInFailed": "Google Sign-In failed. Please try again.",
+    "googleSignInCancelled": "Google Sign-In was cancelled."
+}
+

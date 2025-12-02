@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1081122264238",
+    "project_id": "greenmalaysia-e9f29",
+    "storage_bucket": "greenmalaysia-e9f29.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081122264238:android:58f9d1a8dd96967430893f",
+        "android_client_info": {
+          "package_name": "com.example.greenmalaysia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081122264238-2gt93dj8avkdf0669h167pr4me5tp5sa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.greenmalaysia",
+            "certificate_hash": "f4cc4e4570daef9fbffb3ab1383afca223220886"
+          }
+        },
+        {
+          "client_id": "1081122264238-9m6qsmkuslna2gaiopjui422vrn8etu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGBEgdn-KVu2JWGYZoaBiven27eyjiR14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081122264238-9m6qsmkuslna2gaiopjui422vrn8etu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
