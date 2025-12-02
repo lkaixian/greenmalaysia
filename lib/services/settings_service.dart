@@ -18,8 +18,8 @@ class SettingsService extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
   bool _isAiLiveMode = false;
 
-  // NEW: Navigation Radius (Default 50 meters)
-  int _navRadius = 50;
+  // NEW: Navigation Radius (Default 5000 meters)
+  int _navRadius = 5000;
 
   // --- GETTERS ---
   Locale get locale => _locale;

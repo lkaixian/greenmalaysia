@@ -1,9 +1,35 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+// --- STEP 1: LOAD ENV & DEBUG ---
+val localProperties = Properties()
+val envFile = rootProject.file("../key.env")
+
+print("--------------------------------------------------\n")
+print("GRADLE DEBUG: Looking for .env at: ${envFile.absolutePath}\n")
+
+if (envFile.exists()) {
+    localProperties.load(FileInputStream(envFile))
+    print("GRADLE DEBUG: .env file FOUND.\n")
+} else {
+    print("GRADLE DEBUG: .env file NOT FOUND! Please check path.\n")
+}
+
+var mapsApiKey = localProperties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+
+if (mapsApiKey.isEmpty()) {
+    print("GRADLE DEBUG: GOOGLE_MAPS_API_KEY is empty or missing in .env.\n")
+    mapsApiKey = "AIza_DUMMY_KEY_TO_FIX_BUILD_ERROR"
+} else {
+    // print("GRADLE DEBUG: Key loaded successfully.\n") 
+}
+print("--------------------------------------------------\n")
+// --------------------------------
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
-    // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
 }
 
@@ -22,20 +48,18 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.greenmalaysia"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // --- STEP 2: INJECT KEY (CORRECT KOTLIN SYNTAX) ---
+        manifestPlaceholders["mapsApiKey"] = mapsApiKey
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
