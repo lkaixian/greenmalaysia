@@ -1,71 +1,19 @@
 {
     "@@locale": "en",
 
-    "dashboardTitle": "Home Dashboard",
-    "@dashboardTitle": {
-        "description": "The main title displayed in the top AppBar of the home screen."
-    },
-
-    "analysis": "Analysis",
-    "@analysis": {
-        "description": "Label for the central Floating Action Button (FAB) that opens the camera."
-    },
-
-    "pickup": "Pickup",
-    "@pickup": {
-        "description": "Label for the navigation button used to schedule a recycling pickup."
-    },
-
-    "navigate": "Navigate",
-    "@navigate": {
-        "description": "Label for the navigation button used to open GPS maps."
-    },
-
-    "notifications": "Notifications",
-    "@notifications": {
-        "description": "Title displayed on the Notifications screen."
-    },
-
-    "profile": "Profile",
-    "@profile": {
-        "description": "Title displayed on the User Profile screen."
-    },
-
-    "welcomeMessage": "Welcome! Select an option below.",
-    "@welcomeMessage": {
-        "description": "The central body text shown to the user on the Home Screen before they interact."
-    },
-
-    "schedulePickup": "Schedule Pickup",
-    "@schedulePickup": {
-        "description": "AppBar title for the screen where users arrange a pickup time."
-    },
-
-    "gpsNavigation": "GPS Navigation",
-    "@gpsNavigation": {
-        "description": "AppBar title for the map and routing screen."
-    },
-
-    "aiAnalysis": "AI Analysis",
-    "@aiAnalysis": {
-        "description": "AppBar title for the camera viewfinder screen."
-    },
-
-    "captureAnalyze": "Capture & Analyze",
-    "@captureAnalyze": {
-        "description": "Text on the button that triggers the camera to take a picture."
-    },
-
-    "helloUser": "Hello, {userName}",
-    "@helloUser": {
-        "description": "Greeting displayed on the profile page with the user's name.",
-        "placeholders": {
-            "userName": {
-                "type": "String",
-                "example": "Ali"
-            }
-        }
-    },
+    "appName": "GreenMalaysia",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "back": "Back",
+    "nextBtn": "Next",
+    "doneBtn": "Done",
+    "close": "Close",
+    "loading": "Loading...",
+    "orText": "OR",
+    "saveChanges": "Save Changes",
+    "updateSuccess": "Profile updated successfully!",
+    "updateError": "Failed to update profile",
+    
 
     "loginTitle": "Login",
     "@loginTitle": { "description": "Title for the login screen" },
@@ -73,13 +21,20 @@
     "fillAllFieldsError": "Please fill in all fields",
     "@fillAllFieldsError": { "description": "Error message when inputs are empty" },
 
-    "appName": "GreenMalaysia",
     "email": "Email",
+    "@email": { "description": "Label for email input field" },
+
     "password": "Password",
-    "orText": "OR",
-    
+    "@password": { "description": "Label for password input field" },
+
     "signInGoogle": "Sign in with Google",
     "@signInGoogle": { "description": "Label for Google Sign In button" },
+
+    "googleSignInFailed": "Google Sign-In failed. Please try again.",
+    "@googleSignInFailed": { "description": "Error message for Google Sign-In failure" },
+
+    "googleSignInCancelled": "Google Sign-In was cancelled.",
+    "@googleSignInCancelled": { "description": "Message when user cancels Google Sign-In" },
 
     "signUpLink": "New User? Sign Up Here",
     "@signUpLink": { "description": "Link text to go to registration page" },
@@ -87,20 +42,57 @@
     "createAccount": "Create Account",
     "@createAccount": { "description": "Title for sign up page" },
 
+    "forgotPassword": "Forgot Password?",
+    "@forgotPassword": { "description": "Link text for password recovery" },
+
+    "resetPasswordTitle": "Reset Password",
+    "@resetPasswordTitle": { "description": "Dialog title for password reset" },
+
+    "resetPasswordDesc": "Enter your email address. We will send you a link to create a new password.",
+    "@resetPasswordDesc": { "description": "Instructions for password reset" },
+
+    "sendResetLink": "Send Reset Link",
+    "@sendResetLink": { "description": "Button text to send reset email" },
+
+    "resetEmailSent": "Reset link sent! Check your email.",
+    "@resetEmailSent": { "description": "Success message after sending reset email" },
+
+    
     "fullName": "Full Name",
+    "@fullName": { "description": "Label for full name input" },
+
     "birthDate": "Birth Date (DD/MM/YYYY)",
+    "@birthDate": { "description": "Label for birth date input" },
 
     "agreeEula": "I agree to the EULA (Click to read)",
     "@agreeEula": { "description": "Checkbox label for EULA" },
 
     "eulaError": "Please agree to EULA",
+    "@eulaError": { "description": "Validation error for EULA" },
+
     "emailRequired": "Email required",
+    "@emailRequired": { "description": "Validation error for missing email" },
 
     "eulaDialogTitle": "End User License Agreement",
+    "@eulaDialogTitle": { "description": "Title of the EULA dialog" },
+
     "eulaDialogContent": "1. You agree to recycle.\n2. You agree to drive safely.\n3. You agree not to spam the API.",
-    "close": "Close",
-    "back": "Back",
+    "@eulaDialogContent": { "description": "Content of the EULA dialog" },
+
     "continueBtn": "Continue",
+    "@continueBtn": { "description": "Button label to proceed" },
+
+    "passwordReqTitle": "Password must contain:",
+    "@passwordReqTitle": { "description": "Header for password requirements list" },
+
+    "reqMinChars": "At least 8 characters",
+    "@reqMinChars": { "description": "Password requirement: length" },
+
+    "reqUppercase": "At least 1 uppercase letter",
+    "@reqUppercase": { "description": "Password requirement: uppercase" },
+
+    "reqNumber": "At least 1 number",
+    "@reqNumber": { "description": "Password requirement: digit" },
 
     "verifyOtp": "Verify OTP",
     "@verifyOtp": { "description": "Title for OTP screen" },
@@ -113,15 +105,22 @@
 
     "resendTimer": "Resend code in {seconds} seconds",
     "@resendTimer": {
+        "description": "Countdown timer text",
         "placeholders": { "seconds": { "type": "int" } }
     },
 
     "codeExpired": "Code expired.",
+    "@codeExpired": { "description": "Message shown when timer hits zero" },
+
     "resendNow": "Resend OTP Now",
+    "@resendNow": { "description": "Button text to resend OTP" },
+
     "verifyBtn": "Verify",
+    "@verifyBtn": { "description": "Button text to verify code" },
 
     "otpSentSnackbar": "OTP sent to {email}. (Code: {otp})",
     "@otpSentSnackbar": {
+        "description": "Snackbar message (OTP arg is hidden in production)",
         "placeholders": {
             "email": { "type": "String" },
             "otp": { "type": "String" }
@@ -129,11 +128,217 @@
     },
 
     "verifiedTitle": "Verified!",
+    "@verifiedTitle": { "description": "Success dialog title" },
+
     "verifiedMessage": "OTP is correct. Welcome aboard!",
+    "@verifiedMessage": { "description": "Success dialog body" },
+
     "failedTitle": "Verification Failed",
+    "@failedTitle": { "description": "Failure dialog title" },
+
     "failedMessage": "The OTP you entered is incorrect.",
-    "googleSignInFailed": "Google Sign-In failed. Please try again.",
-    "googleSignInCancelled": "Google Sign-In was cancelled.",
+    "@failedMessage": { "description": "Failure dialog body" },
+
+    "dashboardTitle": "Home Dashboard",
+    "@dashboardTitle": { "description": "AppBar title for Home" },
+
+    "welcomeMessage": "Welcome! Select an option below.",
+    "@welcomeMessage": { "description": "Body text for Home" },
+
+    "analysis": "Analysis",
+    "@analysis": { "description": "FAB label for Camera" },
+
+    "pickup": "Pickup",
+    "@pickup": { "description": "Bottom Nav label for Pickup" },
+
+    "navigate": "Navigate",
+    "@navigate": { "description": "Bottom Nav label for Map" },
+
+    "notifications": "Notifications",
+    "@notifications": { "description": "AppBar title for Notifications" },
+
+    "aiAnalysis": "AI Analysis",
+    "@aiAnalysis": { "description": "AppBar title for Analysis Page" },
+
+    "captureAnalyze": "Capture & Analyze",
+    "@captureAnalyze": { "description": "Button text for manual analysis" },
+
+    "stepProgress": "Step {current} of {total}",
+    "@stepProgress": {
+        "description": "Wizard step counter",
+        "placeholders": {
+            "current": { "type": "int" },
+            "total": { "type": "int" }
+        }
+    },
+
+    "schedulePickup": "Schedule Pickup",
+    "@schedulePickup": { "description": "Title for Pickup Page" },
+
+    "titleCategory": "Select Category",
+    "@titleCategory": { "description": "Step 1 Title" },
+
+    "subtitleCategory": "What type of waste are you recycling?",
+    "@subtitleCategory": { "description": "Step 1 Subtitle" },
+
+    "titleDetails": "Pickup Details",
+    "@titleDetails": { "description": "Step 2 Title" },
+
+    "labelAddress": "Address",
+    "@labelAddress": { "description": "Label for address field" },
+
+    "useProfileAddress": "Use Profile Address",
+    "@useProfileAddress": { "description": "Switch to use saved address" },
+
+    "hintAddress": "Enter pickup address",
+    "@hintAddress": { "description": "Hint text for address input" },
+
+    "labelDate": "Date",
+    "@labelDate": { "description": "Label for date picker" },
+
+    "selectDate": "Select Date",
+    "@selectDate": { "description": "Placeholder for date picker" },
+
+    "labelTimeSlot": "Time Slot",
+    "@labelTimeSlot": { "description": "Label for time dropdown" },
+
+    "searchFacilitiesBtn": "Search Facilities",
+    "@searchFacilitiesBtn": { "description": "Button to start GPS search" },
+
+    "loadingCollectors": "Locating nearby collectors...",
+    "@loadingCollectors": { "description": "Loading text during search" },
+
+    "noFacilitiesFound": "No facilities found nearby.",
+    "@noFacilitiesFound": { "description": "Error when search returns empty" },
+
+    "changeAddressBtn": "Change Address",
+    "@changeAddressBtn": { "description": "Button to go back to step 2" },
+
+    "titleSelectFacility": "Select Facility",
+    "@titleSelectFacility": { "description": "Step 3 Title" },
+
+    "subtitleSelectFacility": "These collectors are near you.",
+    "@subtitleSelectFacility": { "description": "Step 3 Subtitle" },
+
+    "titleConfirm": "Confirm Order",
+    "@titleConfirm": { "description": "Step 4 Title" },
+
+    "subtitleConfirm": "Please review your details.",
+    "@subtitleConfirm": { "description": "Step 4 Subtitle" },
+
+    "labelCategory": "Category",
+    "@labelCategory": { "description": "Label for category summary" },
+
+    "labelFacility": "Facility",
+    "@labelFacility": { "description": "Label for facility summary" },
+
+    "submitRequestBtn": "Submit Pickup Request",
+    "@submitRequestBtn": { "description": "Final submit button" },
+
+    "dialogSubmittedTitle": "Submitted!",
+    "@dialogSubmittedTitle": { "description": "Success dialog title" },
+
+    "dialogSubmittedContent": "Your pickup request has been sent. You will receive an email shortly.",
+    "@dialogSubmittedContent": { "description": "Success dialog body" },
+
+    "errAddressRequired": "Address is required",
+    "@errAddressRequired": { "description": "Validation error" },
+
+    "errDateTimeRequired": "Please select Date and Time",
+    "@errDateTimeRequired": { "description": "Validation error" },
+
+    "errGpsPermission": "Location permissions are denied",
+    "@errGpsPermission": { "description": "Error when GPS is blocked" },
+
+    "gpsNavigation": "GPS Navigation",
+    "@gpsNavigation": { "description": "AppBar title for Map" },
+
+    "radiusSet": "Navigation Radius (m)",
+    "@radiusSet": { "description": "Label for radius setting" },
+
+    "radiusHelp": "Distance threshold for GPS detection",
+    "@radiusHelp": { "description": "Helper text for radius" },
+
+    "profileTitle": "Profile",
+    "@profileTitle": { "description": "AppBar title for Profile" },
+
+    "personalInfo": "Personal Information",
+    "@personalInfo": { "description": "Menu item" },
+
+    "personalInfoTitle": "Personal Information",
+    "@personalInfoTitle": { "description": "AppBar title for Personal Info page" },
+
+    "rewards": "Rewards",
+    "@rewards": { "description": "Menu item" },
+
+    "appSettings": "App Settings",
+    "@appSettings": { "description": "Menu item" },
+
+    "adminDashboard": "Admin Dashboard",
+    "@adminDashboard": { "description": "Menu item (Admin only)" },
+
+    "collectorDashboard": "Collector Portal",
+    "@collectorDashboard": { "description": "Menu item (Driver only)" },
+
+    "logOut": "Log Out",
+    "@logOut": { "description": "Button text" },
+
+    "profilePicUpdated": "Profile picture updated locally!",
+    "@profilePicUpdated": { "description": "Snackbar message" },
+
+    "helloUser": "Hello, {userName}",
+    "@helloUser": {
+        "description": "Greeting on profile page",
+        "placeholders": { "userName": { "type": "String", "example": "Ali" } }
+    },
+    
+    "sex": "Sex",
+    "@sex": { "description": "Label for gender" },
+    "male": "Male",
+    "female": "Female",
+    "selectSex": "Select Sex",
+    
+    "dob": "Date of Birth",
+    "phoneNumber": "Phone Number",
+    "pickupAddress": "Pickup Address",
+
+    "rewardsTitle": "Rewards",
+    "loginFirst": "Please login first",
+    
+    "pointsLabel": "{count} Points",
+    "@pointsLabel": {
+        "description": "Display user points",
+        "placeholders": { "count": { "type": "int" } }
+    },
+    
+    "membershipLabel": "Membership: {level}",
+    "@membershipLabel": {
+        "description": "Display membership tier",
+        "placeholders": { "level": { "type": "String" } }
+    },
+
+    "memberGreenStarter": "Green Starter",
+    "memberEcoWarrior": "Eco Warrior",
+    "memberGreenMaster": "Green Master",
+    
+    "noRewardsMsg": "No rewards for now! Check back later",
+    
+    "costPts": "Cost: {cost} pts",
+    "@costPts": {
+        "description": "Cost label on reward card",
+        "placeholders": { "cost": { "type": "int" } }
+    },
+
+    "redeemBtn": "Redeem",
+    "redeemSuccess": "Redeemed! Check your email for the code.",
+    "errOutOfStock": "Out of stock! No codes available.",
+    "errInsufficientPoints": "Insufficient points!",
+    
+    "errGeneric": "Failed: {error}",
+    "@errGeneric": {
+        "description": "Generic error message with variable",
+        "placeholders": { "error": { "type": "String" } }
+    },
 
     "settingsTitle": "App Settings",
     "language": "Language",
@@ -150,130 +355,15 @@
     "systemDefault": "System Default",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode",
-
-    "personalInfoTitle": "Personal Information",
-    "fullName": "Full Name",
-    "email": "Email",
-    "sex": "Sex",
-    "male": "Male",
-    "female": "Female",
-    "selectSex": "Select Sex",
-    "dob": "Date of Birth",
-    "selectDate": "Select Date",
-    "phoneNumber": "Phone Number",
-    "pickupAddress": "Pickup Address",
-    "saveChanges": "Save Changes",
-    "updateSuccess": "Profile updated successfully!",
-    "updateError": "Failed to update profile",
-    "loading": "Loading...",
-
-    "forgotPassword": "Forgot Password?",
-    "resetPasswordTitle": "Reset Password",
-    "resetPasswordDesc": "Enter your email address. We will send you a link to create a new password.",
-    "sendResetLink": "Send Reset Link",
-    "resetEmailSent": "Reset link sent! Check your email.",
-    "cancel": "Cancel",
-
+    
     "advanced": "Advanced",
     "unlockAdvanced": "Unlock Advanced Features",
-    "radiusSet": "Navigation Radius (m)",
-    "radiusHelp": "Distance threshold for GPS detection",
-
-    "rewardsTitle": "Rewards",
-    "loginFirst": "Please login first",
-    "pointsLabel": "{count} Points",
-    "@pointsLabel": {
-        "placeholders": {
-            "count": { "type": "int" }
-        }
-    },
-    "membershipLabel": "Membership: {level}",
-    "@membershipLabel": {
-        "placeholders": {
-            "level": { "type": "String" }
-        }
-    },
-    "memberGreenStarter": "Green Starter",
-    "memberEcoWarrior": "Eco Warrior",
-    "memberGreenMaster": "Green Master",
-    
-    "noRewardsMsg": "No rewards for now! Check back later",
-    "costPts": "Cost: {cost} pts",
-    "@costPts": {
-        "placeholders": {
-            "cost": { "type": "int" }
-        }
-    },
-    "redeemBtn": "Redeem",
-    "redeemSuccess": "Redeemed! Check your email for the code.",
-    
-    "errOutOfStock": "Out of stock! No codes available.",
-    "errInsufficientPoints": "Insufficient points!",
-    "errGeneric": "Failed: {error}",
-    
-    "emailSubjectReward": "Your Reward: {rewardTitle}",
-    "emailBodyCongrats": "<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>",
-
-    "stepProgress": "Step {current} of {total}",
-    "@stepProgress": {
-        "placeholders": {
-            "current": { "type": "int" },
-            "total": { "type": "int" }
-        }
-    },
-    
-    "titleCategory": "Select Category",
-    "subtitleCategory": "What type of waste are you recycling?",
-    "nextBtn": "Next",
-    
-    "titleDetails": "Pickup Details",
-    "labelAddress": "Address",
-    "useProfileAddress": "Use Profile Address",
-    "hintAddress": "Enter pickup address",
-    "labelDate": "Date",
-    "selectDate": "Select Date",
-    "labelTimeSlot": "Time Slot",
-    "searchFacilitiesBtn": "Search Facilities",
-    
-    "loadingCollectors": "Locating nearby collectors...",
-    "noFacilitiesFound": "No facilities found nearby.",
-    "changeAddressBtn": "Change Address",
-    "titleSelectFacility": "Select Facility",
-    "subtitleSelectFacility": "These collectors are near you.",
-    
-    "titleConfirm": "Confirm Order",
-    "subtitleConfirm": "Please review your details.",
-    "labelCategory": "Category",
-    "labelFacility": "Facility",
-    "submitRequestBtn": "Submit Pickup Request",
-    
-    "dialogSubmittedTitle": "Submitted!",
-    "dialogSubmittedContent": "Your pickup request has been sent. You will receive an email shortly.",
-    "doneBtn": "Done",
-    
-    "errAddressRequired": "Address is required",
-    "errDateTimeRequired": "Please select Date and Time",
-    "errGpsPermission": "Location permissions are denied",
-
-    "passwordReqTitle": "Password must contain:",
-    "reqMinChars": "At least 8 characters",
-    "reqUppercase": "At least 1 uppercase letter",
-    "reqNumber": "At least 1 number",
-    "selectDate": "Select Date",
-    
-    "profileTitle": "Profile",
-    "personalInfo": "Personal Information",
-    "rewards": "Rewards",
-    "appSettings": "App Settings",
-    "adminDashboard": "Admin Dashboard",
-    "collectorDashboard": "Collector Portal",
-    "logOut": "Log Out",
-    "profilePicUpdated": "Profile picture updated locally!",
 
     "collectorPortal": "Collector Portal",
     "tabNewRequests": "New Requests",
     "tabActiveJobs": "Active Jobs",
     "noRequestsFound": "No requests found.",
+    
     "statusPending": "Pending",
     "statusAccepted": "Accepted",
     "statusOnTheWay": "On The Way",
@@ -284,9 +374,29 @@
     "btnCompleteReward": "Complete & Reward User",
     
     "msgJobCompleted": "Job Completed! Points awarded.",
-    "errStatusUpdate": "Error updating status: {error}",
     
-    "emailSubjectComplete": "Pickup Completed! You earned points.",
-    "emailBodyComplete": "<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>{points} points</b> to your account.</p>"
-}
+    "errStatusUpdate": "Error updating status: {error}",
+    "@errStatusUpdate": {
+        "description": "Error message for status update failure",
+        "placeholders": { "error": { "type": "String" } }
+    },
 
+    "emailSubjectReward": "Your Reward: {rewardTitle}",
+    "@emailSubjectReward": {
+        "description": "Email subject for reward redemption",
+        "placeholders": { "rewardTitle": { "type": "String" } }
+    },
+
+    "emailBodyCongrats": "<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>",
+    "@emailBodyCongrats": {
+        "description": "Email body for reward redemption",
+        "placeholders": { "code": { "type": "String" } }
+    },
+
+    "emailSubjectComplete": "Pickup Completed! You earned points.",
+    "emailBodyComplete": "<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>{points} points</b> to your account.</p>",
+    "@emailBodyComplete": {
+        "description": "Email body for pickup completion",
+        "placeholders": { "points": { "type": "int" } }
+    }
+}

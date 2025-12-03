@@ -9,42 +9,40 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get dashboardTitle => 'Papan Pemuka';
+  String get appName => 'GreenMalaysia';
 
   @override
-  String get analysis => 'Analisis';
+  String get ok => 'OK';
 
   @override
-  String get pickup => 'Kutip';
+  String get cancel => 'Batal';
 
   @override
-  String get navigate => 'Navigasi';
+  String get back => 'Kembali';
 
   @override
-  String get notifications => 'Pemberitahuan';
+  String get nextBtn => 'Seterusnya';
 
   @override
-  String get profile => 'Profil';
+  String get doneBtn => 'Selesai';
 
   @override
-  String get welcomeMessage => 'Selamat Datang! Pilih pilihan di bawah.';
+  String get close => 'Tutup';
 
   @override
-  String get schedulePickup => 'Jadualkan Kutipan';
+  String get loading => 'Memuatkan...';
 
   @override
-  String get gpsNavigation => 'Navigasi GPS';
+  String get orText => 'ATAU';
 
   @override
-  String get aiAnalysis => 'Analisis AI';
+  String get saveChanges => 'Simpan Perubahan';
 
   @override
-  String get captureAnalyze => 'Tangkap & Analisis';
+  String get updateSuccess => 'Profil berjaya dikemaskini!';
 
   @override
-  String helloUser(String userName) {
-    return 'Halo, $userName';
-  }
+  String get updateError => 'Gagal mengemaskini profil';
 
   @override
   String get loginTitle => 'Log Masuk';
@@ -53,25 +51,41 @@ class AppLocalizationsMs extends AppLocalizations {
   String get fillAllFieldsError => 'Sila isi semua ruang';
 
   @override
-  String get appName => 'GreenMalaysia';
-
-  @override
   String get email => 'Emel';
 
   @override
   String get password => 'Kata Laluan';
 
   @override
-  String get orText => 'ATAU';
+  String get signInGoogle => 'Log masuk dengan Google';
 
   @override
-  String get signInGoogle => 'Log masuk dengan Google';
+  String get googleSignInFailed => 'Log Masuk Google Gagal. Sila cuba lagi.';
+
+  @override
+  String get googleSignInCancelled => 'Log Masuk Google dibatalkan.';
 
   @override
   String get signUpLink => 'Pengguna Baru? Daftar Di Sini';
 
   @override
   String get createAccount => 'Cipta Akaun';
+
+  @override
+  String get forgotPassword => 'Lupa Kata Laluan?';
+
+  @override
+  String get resetPasswordTitle => 'Tetapkan Semula Kata Laluan';
+
+  @override
+  String get resetPasswordDesc =>
+      'Masukkan emel anda. Kami akan menghantar pautan untuk cipta kata laluan baru.';
+
+  @override
+  String get sendResetLink => 'Hantar Pautan';
+
+  @override
+  String get resetEmailSent => 'Pautan dihantar! Semak emel anda.';
 
   @override
   String get fullName => 'Nama Penuh';
@@ -96,13 +110,19 @@ class AppLocalizationsMs extends AppLocalizations {
       '1. Anda bersetuju untuk mengitar semula.\n2. Anda bersetuju untuk memandu dengan selamat.\n3. Anda bersetuju untuk tidak spam API ini.';
 
   @override
-  String get close => 'Tutup';
-
-  @override
-  String get back => 'Kembali';
-
-  @override
   String get continueBtn => 'Teruskan';
+
+  @override
+  String get passwordReqTitle => 'Kata laluan mesti mengandungi:';
+
+  @override
+  String get reqMinChars => 'Sekurang-kurangnya 8 aksara';
+
+  @override
+  String get reqUppercase => 'Sekurang-kurangnya 1 huruf besar';
+
+  @override
+  String get reqNumber => 'Sekurang-kurangnya 1 nombor';
 
   @override
   String get verifyOtp => 'Sahkan OTP';
@@ -144,53 +164,153 @@ class AppLocalizationsMs extends AppLocalizations {
   String get failedMessage => 'OTP yang anda masukkan salah.';
 
   @override
-  String get googleSignInFailed => 'Log Masuk Google Gagal. Sila cuba lagi.';
+  String get dashboardTitle => 'Papan Pemuka';
 
   @override
-  String get googleSignInCancelled => 'Log Masuk Google dibatalkan.';
+  String get welcomeMessage => 'Selamat Datang! Pilih pilihan di bawah.';
 
   @override
-  String get settingsTitle => 'Tetapan Aplikasi';
+  String get analysis => 'Analisis';
 
   @override
-  String get language => 'Bahasa';
+  String get pickup => 'Kutip';
 
   @override
-  String get englishUK => 'English (UK)';
+  String get navigate => 'Navigasi';
 
   @override
-  String get bahasaMelayu => 'Bahasa Melayu';
+  String get notifications => 'Pemberitahuan';
 
   @override
-  String get aiAnalysisMode => 'Mod Analisis AI';
+  String get aiAnalysis => 'Analisis AI';
 
   @override
-  String get liveMode => 'Mod Langsung (Live)';
+  String get captureAnalyze => 'Tangkap & Analisis';
 
   @override
-  String get nonLiveMode => 'Mod Bukan Langsung';
+  String stepProgress(int current, int total) {
+    return 'Langkah $current dari $total';
+  }
 
   @override
-  String get liveModeSubtitle =>
-      'Kamera mengimbas secara berterusan (Penggunaan bateri tinggi)';
+  String get schedulePickup => 'Jadualkan Kutipan';
 
   @override
-  String get nonLiveModeSubtitle => 'Tangkap gambar untuk menganalisis (Lalai)';
+  String get titleCategory => 'Pilih Kategori';
 
   @override
-  String get theme => 'Tema';
+  String get subtitleCategory => 'Apakah jenis sampah yang anda kitar semula?';
 
   @override
-  String get systemDefault => 'Lalai Sistem';
+  String get titleDetails => 'Butiran Kutipan';
 
   @override
-  String get lightMode => 'Mod Cerah';
+  String get labelAddress => 'Alamat';
 
   @override
-  String get darkMode => 'Mod Gelap';
+  String get useProfileAddress => 'Guna Alamat Profil';
+
+  @override
+  String get hintAddress => 'Masukkan alamat kutipan';
+
+  @override
+  String get labelDate => 'Tarikh';
+
+  @override
+  String get selectDate => 'Pilih Tarikh';
+
+  @override
+  String get labelTimeSlot => 'Slot Masa';
+
+  @override
+  String get searchFacilitiesBtn => 'Cari Fasiliti';
+
+  @override
+  String get loadingCollectors => 'Mencari pengumpul berdekatan...';
+
+  @override
+  String get noFacilitiesFound => 'Tiada fasiliti ditemui berdekatan.';
+
+  @override
+  String get changeAddressBtn => 'Tukar Alamat';
+
+  @override
+  String get titleSelectFacility => 'Pilih Fasiliti';
+
+  @override
+  String get subtitleSelectFacility => 'Pengumpul ini berada berdekatan anda.';
+
+  @override
+  String get titleConfirm => 'Sahkan Pesanan';
+
+  @override
+  String get subtitleConfirm => 'Sila semak butiran anda.';
+
+  @override
+  String get labelCategory => 'Kategori';
+
+  @override
+  String get labelFacility => 'Fasiliti';
+
+  @override
+  String get submitRequestBtn => 'Hantar Permintaan Kutipan';
+
+  @override
+  String get dialogSubmittedTitle => 'Dihantar!';
+
+  @override
+  String get dialogSubmittedContent =>
+      'Permintaan kutipan anda telah dihantar. Anda akan menerima emel sebentar lagi.';
+
+  @override
+  String get errAddressRequired => 'Alamat diperlukan';
+
+  @override
+  String get errDateTimeRequired => 'Sila pilih Tarikh dan Masa';
+
+  @override
+  String get errGpsPermission => 'Kebenaran lokasi ditolak';
+
+  @override
+  String get gpsNavigation => 'Navigasi GPS';
+
+  @override
+  String get radiusSet => 'Jejari Navigasi (m)';
+
+  @override
+  String get radiusHelp => 'Had jarak untuk pengesanan GPS';
+
+  @override
+  String get profileTitle => 'Profil';
+
+  @override
+  String get personalInfo => 'Maklumat Peribadi';
 
   @override
   String get personalInfoTitle => 'Maklumat Peribadi';
+
+  @override
+  String get rewards => 'Ganjaran';
+
+  @override
+  String get appSettings => 'Tetapan Aplikasi';
+
+  @override
+  String get adminDashboard => 'Panel Admin';
+
+  @override
+  String get collectorDashboard => 'Portal Pengumpul';
+
+  @override
+  String get logOut => 'Log Keluar';
+
+  @override
+  String get profilePicUpdated => 'Gambar profil dikemaskini secara tempatan!';
+
+  @override
+  String helloUser(String userName) {
+    return 'Halo, $userName';
+  }
 
   @override
   String get sex => 'Jantina';
@@ -208,56 +328,10 @@ class AppLocalizationsMs extends AppLocalizations {
   String get dob => 'Tarikh Lahir';
 
   @override
-  String get selectDate => 'Pilih Tarikh';
-
-  @override
   String get phoneNumber => 'Nombor Telefon';
 
   @override
   String get pickupAddress => 'Alamat Kutipan';
-
-  @override
-  String get saveChanges => 'Simpan Perubahan';
-
-  @override
-  String get updateSuccess => 'Profil berjaya dikemaskini!';
-
-  @override
-  String get updateError => 'Gagal mengemaskini profil';
-
-  @override
-  String get loading => 'Memuatkan...';
-
-  @override
-  String get forgotPassword => 'Lupa Kata Laluan?';
-
-  @override
-  String get resetPasswordTitle => 'Tetapkan Semula Kata Laluan';
-
-  @override
-  String get resetPasswordDesc =>
-      'Masukkan emel anda. Kami akan menghantar pautan untuk cipta kata laluan baru.';
-
-  @override
-  String get sendResetLink => 'Hantar Pautan';
-
-  @override
-  String get resetEmailSent => 'Pautan dihantar! Semak emel anda.';
-
-  @override
-  String get cancel => 'Batal';
-
-  @override
-  String get advanced => 'Lanjutan';
-
-  @override
-  String get unlockAdvanced => 'Buka Ciri Lanjutan';
-
-  @override
-  String get radiusSet => 'Jejari Navigasi (m)';
-
-  @override
-  String get radiusHelp => 'Had jarak untuk pengesanan GPS';
 
   @override
   String get rewardsTitle => 'Ganjaran';
@@ -305,139 +379,55 @@ class AppLocalizationsMs extends AppLocalizations {
   String get errInsufficientPoints => 'Mata tidak mencukupi!';
 
   @override
-  String errGeneric(Object error) {
+  String errGeneric(String error) {
     return 'Gagal: $error';
   }
 
   @override
-  String emailSubjectReward(Object rewardTitle) {
-    return 'Ganjaran Anda: $rewardTitle';
-  }
+  String get settingsTitle => 'Tetapan Aplikasi';
 
   @override
-  String emailBodyCongrats(Object code) {
-    return '<h1>Tahniah!</h1><p>Ini kod anda: <b>$code</b></p>';
-  }
+  String get language => 'Bahasa';
 
   @override
-  String stepProgress(int current, int total) {
-    return 'Langkah $current dari $total';
-  }
+  String get englishUK => 'English (UK)';
 
   @override
-  String get titleCategory => 'Pilih Kategori';
+  String get bahasaMelayu => 'Bahasa Melayu';
 
   @override
-  String get subtitleCategory => 'Apakah jenis sampah yang anda kitar semula?';
+  String get aiAnalysisMode => 'Mod Analisis AI';
 
   @override
-  String get nextBtn => 'Seterusnya';
+  String get liveMode => 'Mod Langsung (Live)';
 
   @override
-  String get titleDetails => 'Butiran Kutipan';
+  String get nonLiveMode => 'Mod Bukan Langsung';
 
   @override
-  String get labelAddress => 'Alamat';
+  String get liveModeSubtitle =>
+      'Kamera mengimbas secara berterusan (Penggunaan bateri tinggi)';
 
   @override
-  String get useProfileAddress => 'Guna Alamat Profil';
+  String get nonLiveModeSubtitle => 'Tangkap gambar untuk menganalisis (Lalai)';
 
   @override
-  String get hintAddress => 'Masukkan alamat kutipan';
+  String get theme => 'Tema';
 
   @override
-  String get labelDate => 'Tarikh';
+  String get systemDefault => 'Lalai Sistem';
 
   @override
-  String get labelTimeSlot => 'Slot Masa';
+  String get lightMode => 'Mod Cerah';
 
   @override
-  String get searchFacilitiesBtn => 'Cari Fasiliti';
+  String get darkMode => 'Mod Gelap';
 
   @override
-  String get loadingCollectors => 'Mencari pengumpul berdekatan...';
+  String get advanced => 'Lanjutan';
 
   @override
-  String get noFacilitiesFound => 'Tiada fasiliti ditemui berdekatan.';
-
-  @override
-  String get changeAddressBtn => 'Tukar Alamat';
-
-  @override
-  String get titleSelectFacility => 'Pilih Fasiliti';
-
-  @override
-  String get subtitleSelectFacility => 'Pengumpul ini berada berdekatan anda.';
-
-  @override
-  String get titleConfirm => 'Sahkan Pesanan';
-
-  @override
-  String get subtitleConfirm => 'Sila semak butiran anda.';
-
-  @override
-  String get labelCategory => 'Kategori';
-
-  @override
-  String get labelFacility => 'Fasiliti';
-
-  @override
-  String get submitRequestBtn => 'Hantar Permintaan Kutipan';
-
-  @override
-  String get dialogSubmittedTitle => 'Dihantar!';
-
-  @override
-  String get dialogSubmittedContent =>
-      'Permintaan kutipan anda telah dihantar. Anda akan menerima emel sebentar lagi.';
-
-  @override
-  String get doneBtn => 'Selesai';
-
-  @override
-  String get errAddressRequired => 'Alamat diperlukan';
-
-  @override
-  String get errDateTimeRequired => 'Sila pilih Tarikh dan Masa';
-
-  @override
-  String get errGpsPermission => 'Kebenaran lokasi ditolak';
-
-  @override
-  String get passwordReqTitle => 'Kata laluan mesti mengandungi:';
-
-  @override
-  String get reqMinChars => 'Sekurang-kurangnya 8 aksara';
-
-  @override
-  String get reqUppercase => 'Sekurang-kurangnya 1 huruf besar';
-
-  @override
-  String get reqNumber => 'Sekurang-kurangnya 1 nombor';
-
-  @override
-  String get profileTitle => 'Profil';
-
-  @override
-  String get personalInfo => 'Maklumat Peribadi';
-
-  @override
-  String get rewards => 'Ganjaran';
-
-  @override
-  String get appSettings => 'Tetapan Aplikasi';
-
-  @override
-  String get adminDashboard => 'Panel Admin';
-
-  @override
-  String get collectorDashboard => 'Portal Pengumpul';
-
-  @override
-  String get logOut => 'Log Keluar';
-
-  @override
-  String get profilePicUpdated => 'Gambar profil dikemaskini secara tempatan!';
+  String get unlockAdvanced => 'Buka Ciri Lanjutan';
 
   @override
   String get collectorPortal => 'Portal Pengumpul';
@@ -476,15 +466,25 @@ class AppLocalizationsMs extends AppLocalizations {
   String get msgJobCompleted => 'Tugasan Selesai! Mata diberikan.';
 
   @override
-  String errStatusUpdate(Object error) {
+  String errStatusUpdate(String error) {
     return 'Ralat mengemaskini status: $error';
+  }
+
+  @override
+  String emailSubjectReward(String rewardTitle) {
+    return 'Ganjaran Anda: $rewardTitle';
+  }
+
+  @override
+  String emailBodyCongrats(String code) {
+    return '<h1>Tahniah!</h1><p>Ini kod anda: <b>$code</b></p>';
   }
 
   @override
   String get emailSubjectComplete => 'Kutipan Selesai! Anda dapat mata.';
 
   @override
-  String emailBodyComplete(Object points) {
+  String emailBodyComplete(int points) {
     return '<h1>Syabas!</h1><p>Kutipan kitar semula anda selesai. Kami telah menambah <b>$points mata</b> ke akaun anda.</p>';
   }
 }

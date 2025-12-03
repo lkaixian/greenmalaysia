@@ -98,77 +98,77 @@ abstract class AppLocalizations {
     Locale('ms'),
   ];
 
-  /// The main title displayed in the top AppBar of the home screen.
+  /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'Home Dashboard'**
-  String get dashboardTitle;
+  /// **'GreenMalaysia'**
+  String get appName;
 
-  /// Label for the central Floating Action Button (FAB) that opens the camera.
+  /// No description provided for @ok.
   ///
   /// In en, this message translates to:
-  /// **'Analysis'**
-  String get analysis;
+  /// **'OK'**
+  String get ok;
 
-  /// Label for the navigation button used to schedule a recycling pickup.
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Pickup'**
-  String get pickup;
+  /// **'Cancel'**
+  String get cancel;
 
-  /// Label for the navigation button used to open GPS maps.
+  /// No description provided for @back.
   ///
   /// In en, this message translates to:
-  /// **'Navigate'**
-  String get navigate;
+  /// **'Back'**
+  String get back;
 
-  /// Title displayed on the Notifications screen.
+  /// No description provided for @nextBtn.
   ///
   /// In en, this message translates to:
-  /// **'Notifications'**
-  String get notifications;
+  /// **'Next'**
+  String get nextBtn;
 
-  /// Title displayed on the User Profile screen.
+  /// No description provided for @doneBtn.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'Done'**
+  String get doneBtn;
 
-  /// The central body text shown to the user on the Home Screen before they interact.
+  /// No description provided for @close.
   ///
   /// In en, this message translates to:
-  /// **'Welcome! Select an option below.'**
-  String get welcomeMessage;
+  /// **'Close'**
+  String get close;
 
-  /// AppBar title for the screen where users arrange a pickup time.
+  /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Schedule Pickup'**
-  String get schedulePickup;
+  /// **'Loading...'**
+  String get loading;
 
-  /// AppBar title for the map and routing screen.
+  /// No description provided for @orText.
   ///
   /// In en, this message translates to:
-  /// **'GPS Navigation'**
-  String get gpsNavigation;
+  /// **'OR'**
+  String get orText;
 
-  /// AppBar title for the camera viewfinder screen.
+  /// No description provided for @saveChanges.
   ///
   /// In en, this message translates to:
-  /// **'AI Analysis'**
-  String get aiAnalysis;
+  /// **'Save Changes'**
+  String get saveChanges;
 
-  /// Text on the button that triggers the camera to take a picture.
+  /// No description provided for @updateSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Capture & Analyze'**
-  String get captureAnalyze;
+  /// **'Profile updated successfully!'**
+  String get updateSuccess;
 
-  /// Greeting displayed on the profile page with the user's name.
+  /// No description provided for @updateError.
   ///
   /// In en, this message translates to:
-  /// **'Hello, {userName}'**
-  String helloUser(String userName);
+  /// **'Failed to update profile'**
+  String get updateError;
 
   /// Title for the login screen
   ///
@@ -182,35 +182,35 @@ abstract class AppLocalizations {
   /// **'Please fill in all fields'**
   String get fillAllFieldsError;
 
-  /// No description provided for @appName.
-  ///
-  /// In en, this message translates to:
-  /// **'GreenMalaysia'**
-  String get appName;
-
-  /// No description provided for @email.
+  /// Label for email input field
   ///
   /// In en, this message translates to:
   /// **'Email'**
   String get email;
 
-  /// No description provided for @password.
+  /// Label for password input field
   ///
   /// In en, this message translates to:
   /// **'Password'**
   String get password;
-
-  /// No description provided for @orText.
-  ///
-  /// In en, this message translates to:
-  /// **'OR'**
-  String get orText;
 
   /// Label for Google Sign In button
   ///
   /// In en, this message translates to:
   /// **'Sign in with Google'**
   String get signInGoogle;
+
+  /// Error message for Google Sign-In failure
+  ///
+  /// In en, this message translates to:
+  /// **'Google Sign-In failed. Please try again.'**
+  String get googleSignInFailed;
+
+  /// Message when user cancels Google Sign-In
+  ///
+  /// In en, this message translates to:
+  /// **'Google Sign-In was cancelled.'**
+  String get googleSignInCancelled;
 
   /// Link text to go to registration page
   ///
@@ -224,13 +224,43 @@ abstract class AppLocalizations {
   /// **'Create Account'**
   String get createAccount;
 
-  /// No description provided for @fullName.
+  /// Link text for password recovery
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// Dialog title for password reset
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordTitle;
+
+  /// Instructions for password reset
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address. We will send you a link to create a new password.'**
+  String get resetPasswordDesc;
+
+  /// Button text to send reset email
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get sendResetLink;
+
+  /// Success message after sending reset email
+  ///
+  /// In en, this message translates to:
+  /// **'Reset link sent! Check your email.'**
+  String get resetEmailSent;
+
+  /// Label for full name input
   ///
   /// In en, this message translates to:
   /// **'Full Name'**
   String get fullName;
 
-  /// No description provided for @birthDate.
+  /// Label for birth date input
   ///
   /// In en, this message translates to:
   /// **'Birth Date (DD/MM/YYYY)'**
@@ -242,47 +272,59 @@ abstract class AppLocalizations {
   /// **'I agree to the EULA (Click to read)'**
   String get agreeEula;
 
-  /// No description provided for @eulaError.
+  /// Validation error for EULA
   ///
   /// In en, this message translates to:
   /// **'Please agree to EULA'**
   String get eulaError;
 
-  /// No description provided for @emailRequired.
+  /// Validation error for missing email
   ///
   /// In en, this message translates to:
   /// **'Email required'**
   String get emailRequired;
 
-  /// No description provided for @eulaDialogTitle.
+  /// Title of the EULA dialog
   ///
   /// In en, this message translates to:
   /// **'End User License Agreement'**
   String get eulaDialogTitle;
 
-  /// No description provided for @eulaDialogContent.
+  /// Content of the EULA dialog
   ///
   /// In en, this message translates to:
   /// **'1. You agree to recycle.\n2. You agree to drive safely.\n3. You agree not to spam the API.'**
   String get eulaDialogContent;
 
-  /// No description provided for @close.
-  ///
-  /// In en, this message translates to:
-  /// **'Close'**
-  String get close;
-
-  /// No description provided for @back.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get back;
-
-  /// No description provided for @continueBtn.
+  /// Button label to proceed
   ///
   /// In en, this message translates to:
   /// **'Continue'**
   String get continueBtn;
+
+  /// Header for password requirements list
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain:'**
+  String get passwordReqTitle;
+
+  /// Password requirement: length
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get reqMinChars;
+
+  /// Password requirement: uppercase
+  ///
+  /// In en, this message translates to:
+  /// **'At least 1 uppercase letter'**
+  String get reqUppercase;
+
+  /// Password requirement: digit
+  ///
+  /// In en, this message translates to:
+  /// **'At least 1 number'**
+  String get reqNumber;
 
   /// Title for OTP screen
   ///
@@ -296,71 +338,473 @@ abstract class AppLocalizations {
   /// **'Enter the code sent to\n{email}'**
   String otpSentPrompt(String email);
 
-  /// No description provided for @resendTimer.
+  /// Countdown timer text
   ///
   /// In en, this message translates to:
   /// **'Resend code in {seconds} seconds'**
   String resendTimer(int seconds);
 
-  /// No description provided for @codeExpired.
+  /// Message shown when timer hits zero
   ///
   /// In en, this message translates to:
   /// **'Code expired.'**
   String get codeExpired;
 
-  /// No description provided for @resendNow.
+  /// Button text to resend OTP
   ///
   /// In en, this message translates to:
   /// **'Resend OTP Now'**
   String get resendNow;
 
-  /// No description provided for @verifyBtn.
+  /// Button text to verify code
   ///
   /// In en, this message translates to:
   /// **'Verify'**
   String get verifyBtn;
 
-  /// No description provided for @otpSentSnackbar.
+  /// Snackbar message (OTP arg is hidden in production)
   ///
   /// In en, this message translates to:
   /// **'OTP sent to {email}. (Code: {otp})'**
   String otpSentSnackbar(String email, String otp);
 
-  /// No description provided for @verifiedTitle.
+  /// Success dialog title
   ///
   /// In en, this message translates to:
   /// **'Verified!'**
   String get verifiedTitle;
 
-  /// No description provided for @verifiedMessage.
+  /// Success dialog body
   ///
   /// In en, this message translates to:
   /// **'OTP is correct. Welcome aboard!'**
   String get verifiedMessage;
 
-  /// No description provided for @failedTitle.
+  /// Failure dialog title
   ///
   /// In en, this message translates to:
   /// **'Verification Failed'**
   String get failedTitle;
 
-  /// No description provided for @failedMessage.
+  /// Failure dialog body
   ///
   /// In en, this message translates to:
   /// **'The OTP you entered is incorrect.'**
   String get failedMessage;
 
-  /// No description provided for @googleSignInFailed.
+  /// AppBar title for Home
   ///
   /// In en, this message translates to:
-  /// **'Google Sign-In failed. Please try again.'**
-  String get googleSignInFailed;
+  /// **'Home Dashboard'**
+  String get dashboardTitle;
 
-  /// No description provided for @googleSignInCancelled.
+  /// Body text for Home
   ///
   /// In en, this message translates to:
-  /// **'Google Sign-In was cancelled.'**
-  String get googleSignInCancelled;
+  /// **'Welcome! Select an option below.'**
+  String get welcomeMessage;
+
+  /// FAB label for Camera
+  ///
+  /// In en, this message translates to:
+  /// **'Analysis'**
+  String get analysis;
+
+  /// Bottom Nav label for Pickup
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup'**
+  String get pickup;
+
+  /// Bottom Nav label for Map
+  ///
+  /// In en, this message translates to:
+  /// **'Navigate'**
+  String get navigate;
+
+  /// AppBar title for Notifications
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// AppBar title for Analysis Page
+  ///
+  /// In en, this message translates to:
+  /// **'AI Analysis'**
+  String get aiAnalysis;
+
+  /// Button text for manual analysis
+  ///
+  /// In en, this message translates to:
+  /// **'Capture & Analyze'**
+  String get captureAnalyze;
+
+  /// Wizard step counter
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String stepProgress(int current, int total);
+
+  /// Title for Pickup Page
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule Pickup'**
+  String get schedulePickup;
+
+  /// Step 1 Title
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get titleCategory;
+
+  /// Step 1 Subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'What type of waste are you recycling?'**
+  String get subtitleCategory;
+
+  /// Step 2 Title
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Details'**
+  String get titleDetails;
+
+  /// Label for address field
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get labelAddress;
+
+  /// Switch to use saved address
+  ///
+  /// In en, this message translates to:
+  /// **'Use Profile Address'**
+  String get useProfileAddress;
+
+  /// Hint text for address input
+  ///
+  /// In en, this message translates to:
+  /// **'Enter pickup address'**
+  String get hintAddress;
+
+  /// Label for date picker
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get labelDate;
+
+  /// Placeholder for date picker
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// Label for time dropdown
+  ///
+  /// In en, this message translates to:
+  /// **'Time Slot'**
+  String get labelTimeSlot;
+
+  /// Button to start GPS search
+  ///
+  /// In en, this message translates to:
+  /// **'Search Facilities'**
+  String get searchFacilitiesBtn;
+
+  /// Loading text during search
+  ///
+  /// In en, this message translates to:
+  /// **'Locating nearby collectors...'**
+  String get loadingCollectors;
+
+  /// Error when search returns empty
+  ///
+  /// In en, this message translates to:
+  /// **'No facilities found nearby.'**
+  String get noFacilitiesFound;
+
+  /// Button to go back to step 2
+  ///
+  /// In en, this message translates to:
+  /// **'Change Address'**
+  String get changeAddressBtn;
+
+  /// Step 3 Title
+  ///
+  /// In en, this message translates to:
+  /// **'Select Facility'**
+  String get titleSelectFacility;
+
+  /// Step 3 Subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'These collectors are near you.'**
+  String get subtitleSelectFacility;
+
+  /// Step 4 Title
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Order'**
+  String get titleConfirm;
+
+  /// Step 4 Subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Please review your details.'**
+  String get subtitleConfirm;
+
+  /// Label for category summary
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get labelCategory;
+
+  /// Label for facility summary
+  ///
+  /// In en, this message translates to:
+  /// **'Facility'**
+  String get labelFacility;
+
+  /// Final submit button
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Pickup Request'**
+  String get submitRequestBtn;
+
+  /// Success dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted!'**
+  String get dialogSubmittedTitle;
+
+  /// Success dialog body
+  ///
+  /// In en, this message translates to:
+  /// **'Your pickup request has been sent. You will receive an email shortly.'**
+  String get dialogSubmittedContent;
+
+  /// Validation error
+  ///
+  /// In en, this message translates to:
+  /// **'Address is required'**
+  String get errAddressRequired;
+
+  /// Validation error
+  ///
+  /// In en, this message translates to:
+  /// **'Please select Date and Time'**
+  String get errDateTimeRequired;
+
+  /// Error when GPS is blocked
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are denied'**
+  String get errGpsPermission;
+
+  /// AppBar title for Map
+  ///
+  /// In en, this message translates to:
+  /// **'GPS Navigation'**
+  String get gpsNavigation;
+
+  /// Label for radius setting
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation Radius (m)'**
+  String get radiusSet;
+
+  /// Helper text for radius
+  ///
+  /// In en, this message translates to:
+  /// **'Distance threshold for GPS detection'**
+  String get radiusHelp;
+
+  /// AppBar title for Profile
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// Menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfo;
+
+  /// AppBar title for Personal Info page
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfoTitle;
+
+  /// Menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get rewards;
+
+  /// Menu item
+  ///
+  /// In en, this message translates to:
+  /// **'App Settings'**
+  String get appSettings;
+
+  /// Menu item (Admin only)
+  ///
+  /// In en, this message translates to:
+  /// **'Admin Dashboard'**
+  String get adminDashboard;
+
+  /// Menu item (Driver only)
+  ///
+  /// In en, this message translates to:
+  /// **'Collector Portal'**
+  String get collectorDashboard;
+
+  /// Button text
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// Snackbar message
+  ///
+  /// In en, this message translates to:
+  /// **'Profile picture updated locally!'**
+  String get profilePicUpdated;
+
+  /// Greeting on profile page
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, {userName}'**
+  String helloUser(String userName);
+
+  /// Label for gender
+  ///
+  /// In en, this message translates to:
+  /// **'Sex'**
+  String get sex;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @selectSex.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Sex'**
+  String get selectSex;
+
+  /// No description provided for @dob.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of Birth'**
+  String get dob;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @pickupAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Address'**
+  String get pickupAddress;
+
+  /// No description provided for @rewardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get rewardsTitle;
+
+  /// No description provided for @loginFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Please login first'**
+  String get loginFirst;
+
+  /// Display user points
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Points'**
+  String pointsLabel(int count);
+
+  /// Display membership tier
+  ///
+  /// In en, this message translates to:
+  /// **'Membership: {level}'**
+  String membershipLabel(String level);
+
+  /// No description provided for @memberGreenStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Green Starter'**
+  String get memberGreenStarter;
+
+  /// No description provided for @memberEcoWarrior.
+  ///
+  /// In en, this message translates to:
+  /// **'Eco Warrior'**
+  String get memberEcoWarrior;
+
+  /// No description provided for @memberGreenMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Green Master'**
+  String get memberGreenMaster;
+
+  /// No description provided for @noRewardsMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'No rewards for now! Check back later'**
+  String get noRewardsMsg;
+
+  /// Cost label on reward card
+  ///
+  /// In en, this message translates to:
+  /// **'Cost: {cost} pts'**
+  String costPts(int cost);
+
+  /// No description provided for @redeemBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem'**
+  String get redeemBtn;
+
+  /// No description provided for @redeemSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeemed! Check your email for the code.'**
+  String get redeemSuccess;
+
+  /// No description provided for @errOutOfStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of stock! No codes available.'**
+  String get errOutOfStock;
+
+  /// No description provided for @errInsufficientPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient points!'**
+  String get errInsufficientPoints;
+
+  /// Generic error message with variable
+  ///
+  /// In en, this message translates to:
+  /// **'Failed: {error}'**
+  String errGeneric(String error);
 
   /// No description provided for @settingsTitle.
   ///
@@ -440,120 +884,6 @@ abstract class AppLocalizations {
   /// **'Dark Mode'**
   String get darkMode;
 
-  /// No description provided for @personalInfoTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Personal Information'**
-  String get personalInfoTitle;
-
-  /// No description provided for @sex.
-  ///
-  /// In en, this message translates to:
-  /// **'Sex'**
-  String get sex;
-
-  /// No description provided for @male.
-  ///
-  /// In en, this message translates to:
-  /// **'Male'**
-  String get male;
-
-  /// No description provided for @female.
-  ///
-  /// In en, this message translates to:
-  /// **'Female'**
-  String get female;
-
-  /// No description provided for @selectSex.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Sex'**
-  String get selectSex;
-
-  /// No description provided for @dob.
-  ///
-  /// In en, this message translates to:
-  /// **'Date of Birth'**
-  String get dob;
-
-  /// No description provided for @selectDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Date'**
-  String get selectDate;
-
-  /// No description provided for @phoneNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone Number'**
-  String get phoneNumber;
-
-  /// No description provided for @pickupAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Pickup Address'**
-  String get pickupAddress;
-
-  /// No description provided for @saveChanges.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Changes'**
-  String get saveChanges;
-
-  /// No description provided for @updateSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile updated successfully!'**
-  String get updateSuccess;
-
-  /// No description provided for @updateError.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to update profile'**
-  String get updateError;
-
-  /// No description provided for @loading.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading...'**
-  String get loading;
-
-  /// No description provided for @forgotPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Forgot Password?'**
-  String get forgotPassword;
-
-  /// No description provided for @resetPasswordTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset Password'**
-  String get resetPasswordTitle;
-
-  /// No description provided for @resetPasswordDesc.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your email address. We will send you a link to create a new password.'**
-  String get resetPasswordDesc;
-
-  /// No description provided for @sendResetLink.
-  ///
-  /// In en, this message translates to:
-  /// **'Send Reset Link'**
-  String get sendResetLink;
-
-  /// No description provided for @resetEmailSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset link sent! Check your email.'**
-  String get resetEmailSent;
-
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
   /// No description provided for @advanced.
   ///
   /// In en, this message translates to:
@@ -565,348 +895,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlock Advanced Features'**
   String get unlockAdvanced;
-
-  /// No description provided for @radiusSet.
-  ///
-  /// In en, this message translates to:
-  /// **'Navigation Radius (m)'**
-  String get radiusSet;
-
-  /// No description provided for @radiusHelp.
-  ///
-  /// In en, this message translates to:
-  /// **'Distance threshold for GPS detection'**
-  String get radiusHelp;
-
-  /// No description provided for @rewardsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Rewards'**
-  String get rewardsTitle;
-
-  /// No description provided for @loginFirst.
-  ///
-  /// In en, this message translates to:
-  /// **'Please login first'**
-  String get loginFirst;
-
-  /// No description provided for @pointsLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} Points'**
-  String pointsLabel(int count);
-
-  /// No description provided for @membershipLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Membership: {level}'**
-  String membershipLabel(String level);
-
-  /// No description provided for @memberGreenStarter.
-  ///
-  /// In en, this message translates to:
-  /// **'Green Starter'**
-  String get memberGreenStarter;
-
-  /// No description provided for @memberEcoWarrior.
-  ///
-  /// In en, this message translates to:
-  /// **'Eco Warrior'**
-  String get memberEcoWarrior;
-
-  /// No description provided for @memberGreenMaster.
-  ///
-  /// In en, this message translates to:
-  /// **'Green Master'**
-  String get memberGreenMaster;
-
-  /// No description provided for @noRewardsMsg.
-  ///
-  /// In en, this message translates to:
-  /// **'No rewards for now! Check back later'**
-  String get noRewardsMsg;
-
-  /// No description provided for @costPts.
-  ///
-  /// In en, this message translates to:
-  /// **'Cost: {cost} pts'**
-  String costPts(int cost);
-
-  /// No description provided for @redeemBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Redeem'**
-  String get redeemBtn;
-
-  /// No description provided for @redeemSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Redeemed! Check your email for the code.'**
-  String get redeemSuccess;
-
-  /// No description provided for @errOutOfStock.
-  ///
-  /// In en, this message translates to:
-  /// **'Out of stock! No codes available.'**
-  String get errOutOfStock;
-
-  /// No description provided for @errInsufficientPoints.
-  ///
-  /// In en, this message translates to:
-  /// **'Insufficient points!'**
-  String get errInsufficientPoints;
-
-  /// No description provided for @errGeneric.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed: {error}'**
-  String errGeneric(Object error);
-
-  /// No description provided for @emailSubjectReward.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Reward: {rewardTitle}'**
-  String emailSubjectReward(Object rewardTitle);
-
-  /// No description provided for @emailBodyCongrats.
-  ///
-  /// In en, this message translates to:
-  /// **'<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>'**
-  String emailBodyCongrats(Object code);
-
-  /// No description provided for @stepProgress.
-  ///
-  /// In en, this message translates to:
-  /// **'Step {current} of {total}'**
-  String stepProgress(int current, int total);
-
-  /// No description provided for @titleCategory.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Category'**
-  String get titleCategory;
-
-  /// No description provided for @subtitleCategory.
-  ///
-  /// In en, this message translates to:
-  /// **'What type of waste are you recycling?'**
-  String get subtitleCategory;
-
-  /// No description provided for @nextBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get nextBtn;
-
-  /// No description provided for @titleDetails.
-  ///
-  /// In en, this message translates to:
-  /// **'Pickup Details'**
-  String get titleDetails;
-
-  /// No description provided for @labelAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Address'**
-  String get labelAddress;
-
-  /// No description provided for @useProfileAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Use Profile Address'**
-  String get useProfileAddress;
-
-  /// No description provided for @hintAddress.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter pickup address'**
-  String get hintAddress;
-
-  /// No description provided for @labelDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Date'**
-  String get labelDate;
-
-  /// No description provided for @labelTimeSlot.
-  ///
-  /// In en, this message translates to:
-  /// **'Time Slot'**
-  String get labelTimeSlot;
-
-  /// No description provided for @searchFacilitiesBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Search Facilities'**
-  String get searchFacilitiesBtn;
-
-  /// No description provided for @loadingCollectors.
-  ///
-  /// In en, this message translates to:
-  /// **'Locating nearby collectors...'**
-  String get loadingCollectors;
-
-  /// No description provided for @noFacilitiesFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No facilities found nearby.'**
-  String get noFacilitiesFound;
-
-  /// No description provided for @changeAddressBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Change Address'**
-  String get changeAddressBtn;
-
-  /// No description provided for @titleSelectFacility.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Facility'**
-  String get titleSelectFacility;
-
-  /// No description provided for @subtitleSelectFacility.
-  ///
-  /// In en, this message translates to:
-  /// **'These collectors are near you.'**
-  String get subtitleSelectFacility;
-
-  /// No description provided for @titleConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm Order'**
-  String get titleConfirm;
-
-  /// No description provided for @subtitleConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Please review your details.'**
-  String get subtitleConfirm;
-
-  /// No description provided for @labelCategory.
-  ///
-  /// In en, this message translates to:
-  /// **'Category'**
-  String get labelCategory;
-
-  /// No description provided for @labelFacility.
-  ///
-  /// In en, this message translates to:
-  /// **'Facility'**
-  String get labelFacility;
-
-  /// No description provided for @submitRequestBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Submit Pickup Request'**
-  String get submitRequestBtn;
-
-  /// No description provided for @dialogSubmittedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Submitted!'**
-  String get dialogSubmittedTitle;
-
-  /// No description provided for @dialogSubmittedContent.
-  ///
-  /// In en, this message translates to:
-  /// **'Your pickup request has been sent. You will receive an email shortly.'**
-  String get dialogSubmittedContent;
-
-  /// No description provided for @doneBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Done'**
-  String get doneBtn;
-
-  /// No description provided for @errAddressRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Address is required'**
-  String get errAddressRequired;
-
-  /// No description provided for @errDateTimeRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Please select Date and Time'**
-  String get errDateTimeRequired;
-
-  /// No description provided for @errGpsPermission.
-  ///
-  /// In en, this message translates to:
-  /// **'Location permissions are denied'**
-  String get errGpsPermission;
-
-  /// No description provided for @passwordReqTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Password must contain:'**
-  String get passwordReqTitle;
-
-  /// No description provided for @reqMinChars.
-  ///
-  /// In en, this message translates to:
-  /// **'At least 8 characters'**
-  String get reqMinChars;
-
-  /// No description provided for @reqUppercase.
-  ///
-  /// In en, this message translates to:
-  /// **'At least 1 uppercase letter'**
-  String get reqUppercase;
-
-  /// No description provided for @reqNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'At least 1 number'**
-  String get reqNumber;
-
-  /// No description provided for @profileTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profileTitle;
-
-  /// No description provided for @personalInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'Personal Information'**
-  String get personalInfo;
-
-  /// No description provided for @rewards.
-  ///
-  /// In en, this message translates to:
-  /// **'Rewards'**
-  String get rewards;
-
-  /// No description provided for @appSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'App Settings'**
-  String get appSettings;
-
-  /// No description provided for @adminDashboard.
-  ///
-  /// In en, this message translates to:
-  /// **'Admin Dashboard'**
-  String get adminDashboard;
-
-  /// No description provided for @collectorDashboard.
-  ///
-  /// In en, this message translates to:
-  /// **'Collector Portal'**
-  String get collectorDashboard;
-
-  /// No description provided for @logOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Log Out'**
-  String get logOut;
-
-  /// No description provided for @profilePicUpdated.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile picture updated locally!'**
-  String get profilePicUpdated;
 
   /// No description provided for @collectorPortal.
   ///
@@ -980,11 +968,23 @@ abstract class AppLocalizations {
   /// **'Job Completed! Points awarded.'**
   String get msgJobCompleted;
 
-  /// No description provided for @errStatusUpdate.
+  /// Error message for status update failure
   ///
   /// In en, this message translates to:
   /// **'Error updating status: {error}'**
-  String errStatusUpdate(Object error);
+  String errStatusUpdate(String error);
+
+  /// Email subject for reward redemption
+  ///
+  /// In en, this message translates to:
+  /// **'Your Reward: {rewardTitle}'**
+  String emailSubjectReward(String rewardTitle);
+
+  /// Email body for reward redemption
+  ///
+  /// In en, this message translates to:
+  /// **'<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>'**
+  String emailBodyCongrats(String code);
 
   /// No description provided for @emailSubjectComplete.
   ///
@@ -992,11 +992,11 @@ abstract class AppLocalizations {
   /// **'Pickup Completed! You earned points.'**
   String get emailSubjectComplete;
 
-  /// No description provided for @emailBodyComplete.
+  /// Email body for pickup completion
   ///
   /// In en, this message translates to:
   /// **'<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>{points} points</b> to your account.</p>'**
-  String emailBodyComplete(Object points);
+  String emailBodyComplete(int points);
 }
 
 class _AppLocalizationsDelegate
