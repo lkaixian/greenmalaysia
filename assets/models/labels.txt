@@ -1,4 +1,7 @@
-Plastic
-Metal
-Glass
-Paper
+aluminium
+batteries
+garbage
+glass
+organic
+paper
+plastic

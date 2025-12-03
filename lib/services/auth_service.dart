@@ -106,14 +106,14 @@ class AuthService {
     try {
       await _ensureInitialized();
 
-      final GoogleSignInAccount? googleUser = await _googleSignIn.authenticate(
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
         scopeHint: ['email', 'profile'],
       );
 
       if (googleUser == null) return null; // Cancelled
 
       final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+          googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: null,

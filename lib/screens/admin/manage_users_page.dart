@@ -39,8 +39,9 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
                   .collection('users')
                   .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData)
+                if (!snapshot.hasData) {
                   return const Center(child: CircularProgressIndicator());
+                }
 
                 var docs = snapshot.data!.docs;
 

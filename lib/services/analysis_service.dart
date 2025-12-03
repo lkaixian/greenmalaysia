@@ -13,7 +13,7 @@ class AnalysisService {
   Future<void> loadModel() async {
     await _vision.loadYoloModel(
       labels: 'assets/models/labels.txt',
-      modelPath: 'assets/models/yolov8n.tflite',
+      modelPath: 'assets/models/modelv1a.tflite',
       modelVersion: "yolov8",
       quantization: true,
       numThreads: 2,

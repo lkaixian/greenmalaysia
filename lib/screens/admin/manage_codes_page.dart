@@ -28,8 +28,9 @@ class ManageCodesPage extends StatelessWidget {
             .where('rewardId', isEqualTo: rewardId)
             .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData)
+          if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
+          }
 
           var docs = snapshot.data!.docs;
 

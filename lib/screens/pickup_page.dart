@@ -246,8 +246,9 @@ class _PickupPageState extends State<PickupPage> {
           child: StreamBuilder<QuerySnapshot>(
             stream: _service.getCategories(),
             builder: (context, snapshot) {
-              if (!snapshot.hasData)
+              if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
+              }
 
               var docs = snapshot.data!.docs;
               return ListView.builder(
@@ -318,10 +319,11 @@ class _PickupPageState extends State<PickupPage> {
             onChanged: (val) {
               setState(() {
                 _useProfileAddress = val;
-                if (val)
+                if (val) {
                   _loadUserProfileAddress();
-                else
+                } else {
                   _addressController.clear();
+                }
               });
             },
           ),

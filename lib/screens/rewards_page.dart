@@ -32,8 +32,9 @@ class RewardsPage extends StatelessWidget {
             .doc(user.uid)
             .snapshots(),
         builder: (context, userSnapshot) {
-          if (!userSnapshot.hasData)
+          if (!userSnapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
+          }
 
           var userData = userSnapshot.data!.data() as Map<String, dynamic>?;
           int currentPoints = userData?['points'] ?? 0;
@@ -78,8 +79,9 @@ class RewardsPage extends StatelessWidget {
                       .collection('rewards')
                       .snapshots(),
                   builder: (context, rewardSnapshot) {
-                    if (!rewardSnapshot.hasData)
+                    if (!rewardSnapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
+                    }
 
                     var rewards = rewardSnapshot.data!.docs;
 
