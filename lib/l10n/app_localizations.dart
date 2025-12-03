@@ -577,6 +577,426 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Distance threshold for GPS detection'**
   String get radiusHelp;
+
+  /// No description provided for @rewardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get rewardsTitle;
+
+  /// No description provided for @loginFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Please login first'**
+  String get loginFirst;
+
+  /// No description provided for @pointsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Points'**
+  String pointsLabel(int count);
+
+  /// No description provided for @membershipLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership: {level}'**
+  String membershipLabel(String level);
+
+  /// No description provided for @memberGreenStarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Green Starter'**
+  String get memberGreenStarter;
+
+  /// No description provided for @memberEcoWarrior.
+  ///
+  /// In en, this message translates to:
+  /// **'Eco Warrior'**
+  String get memberEcoWarrior;
+
+  /// No description provided for @memberGreenMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Green Master'**
+  String get memberGreenMaster;
+
+  /// No description provided for @noRewardsMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'No rewards for now! Check back later'**
+  String get noRewardsMsg;
+
+  /// No description provided for @costPts.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost: {cost} pts'**
+  String costPts(int cost);
+
+  /// No description provided for @redeemBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem'**
+  String get redeemBtn;
+
+  /// No description provided for @redeemSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeemed! Check your email for the code.'**
+  String get redeemSuccess;
+
+  /// No description provided for @errOutOfStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of stock! No codes available.'**
+  String get errOutOfStock;
+
+  /// No description provided for @errInsufficientPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient points!'**
+  String get errInsufficientPoints;
+
+  /// No description provided for @errGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed: {error}'**
+  String errGeneric(Object error);
+
+  /// No description provided for @emailSubjectReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Reward: {rewardTitle}'**
+  String emailSubjectReward(Object rewardTitle);
+
+  /// No description provided for @emailBodyCongrats.
+  ///
+  /// In en, this message translates to:
+  /// **'<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>'**
+  String emailBodyCongrats(Object code);
+
+  /// No description provided for @stepProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String stepProgress(int current, int total);
+
+  /// No description provided for @titleCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get titleCategory;
+
+  /// No description provided for @subtitleCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'What type of waste are you recycling?'**
+  String get subtitleCategory;
+
+  /// No description provided for @nextBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get nextBtn;
+
+  /// No description provided for @titleDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Details'**
+  String get titleDetails;
+
+  /// No description provided for @labelAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get labelAddress;
+
+  /// No description provided for @useProfileAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Profile Address'**
+  String get useProfileAddress;
+
+  /// No description provided for @hintAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter pickup address'**
+  String get hintAddress;
+
+  /// No description provided for @labelDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get labelDate;
+
+  /// No description provided for @labelTimeSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Slot'**
+  String get labelTimeSlot;
+
+  /// No description provided for @searchFacilitiesBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Facilities'**
+  String get searchFacilitiesBtn;
+
+  /// No description provided for @loadingCollectors.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating nearby collectors...'**
+  String get loadingCollectors;
+
+  /// No description provided for @noFacilitiesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No facilities found nearby.'**
+  String get noFacilitiesFound;
+
+  /// No description provided for @changeAddressBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Address'**
+  String get changeAddressBtn;
+
+  /// No description provided for @titleSelectFacility.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Facility'**
+  String get titleSelectFacility;
+
+  /// No description provided for @subtitleSelectFacility.
+  ///
+  /// In en, this message translates to:
+  /// **'These collectors are near you.'**
+  String get subtitleSelectFacility;
+
+  /// No description provided for @titleConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Order'**
+  String get titleConfirm;
+
+  /// No description provided for @subtitleConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Please review your details.'**
+  String get subtitleConfirm;
+
+  /// No description provided for @labelCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get labelCategory;
+
+  /// No description provided for @labelFacility.
+  ///
+  /// In en, this message translates to:
+  /// **'Facility'**
+  String get labelFacility;
+
+  /// No description provided for @submitRequestBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Pickup Request'**
+  String get submitRequestBtn;
+
+  /// No description provided for @dialogSubmittedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Submitted!'**
+  String get dialogSubmittedTitle;
+
+  /// No description provided for @dialogSubmittedContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your pickup request has been sent. You will receive an email shortly.'**
+  String get dialogSubmittedContent;
+
+  /// No description provided for @doneBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get doneBtn;
+
+  /// No description provided for @errAddressRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Address is required'**
+  String get errAddressRequired;
+
+  /// No description provided for @errDateTimeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select Date and Time'**
+  String get errDateTimeRequired;
+
+  /// No description provided for @errGpsPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are denied'**
+  String get errGpsPermission;
+
+  /// No description provided for @passwordReqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain:'**
+  String get passwordReqTitle;
+
+  /// No description provided for @reqMinChars.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters'**
+  String get reqMinChars;
+
+  /// No description provided for @reqUppercase.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 1 uppercase letter'**
+  String get reqUppercase;
+
+  /// No description provided for @reqNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 1 number'**
+  String get reqNumber;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInfo;
+
+  /// No description provided for @rewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get rewards;
+
+  /// No description provided for @appSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'App Settings'**
+  String get appSettings;
+
+  /// No description provided for @adminDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin Dashboard'**
+  String get adminDashboard;
+
+  /// No description provided for @collectorDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Collector Portal'**
+  String get collectorDashboard;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// No description provided for @profilePicUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile picture updated locally!'**
+  String get profilePicUpdated;
+
+  /// No description provided for @collectorPortal.
+  ///
+  /// In en, this message translates to:
+  /// **'Collector Portal'**
+  String get collectorPortal;
+
+  /// No description provided for @tabNewRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'New Requests'**
+  String get tabNewRequests;
+
+  /// No description provided for @tabActiveJobs.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Jobs'**
+  String get tabActiveJobs;
+
+  /// No description provided for @noRequestsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests found.'**
+  String get noRequestsFound;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get statusPending;
+
+  /// No description provided for @statusAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get statusAccepted;
+
+  /// No description provided for @statusOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On The Way'**
+  String get statusOnTheWay;
+
+  /// No description provided for @btnReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get btnReject;
+
+  /// No description provided for @btnAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get btnAccept;
+
+  /// No description provided for @btnStartPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Pickup (On The Way)'**
+  String get btnStartPickup;
+
+  /// No description provided for @btnCompleteReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete & Reward User'**
+  String get btnCompleteReward;
+
+  /// No description provided for @msgJobCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Job Completed! Points awarded.'**
+  String get msgJobCompleted;
+
+  /// No description provided for @errStatusUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating status: {error}'**
+  String errStatusUpdate(Object error);
+
+  /// No description provided for @emailSubjectComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Completed! You earned points.'**
+  String get emailSubjectComplete;
+
+  /// No description provided for @emailBodyComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>{points} points</b> to your account.</p>'**
+  String emailBodyComplete(Object points);
 }
 
 class _AppLocalizationsDelegate

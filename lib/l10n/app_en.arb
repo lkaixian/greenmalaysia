@@ -177,6 +177,116 @@
     "advanced": "Advanced",
     "unlockAdvanced": "Unlock Advanced Features",
     "radiusSet": "Navigation Radius (m)",
-    "radiusHelp": "Distance threshold for GPS detection"
+    "radiusHelp": "Distance threshold for GPS detection",
+
+    "rewardsTitle": "Rewards",
+    "loginFirst": "Please login first",
+    "pointsLabel": "{count} Points",
+    "@pointsLabel": {
+        "placeholders": {
+            "count": { "type": "int" }
+        }
+    },
+    "membershipLabel": "Membership: {level}",
+    "@membershipLabel": {
+        "placeholders": {
+            "level": { "type": "String" }
+        }
+    },
+    "memberGreenStarter": "Green Starter",
+    "memberEcoWarrior": "Eco Warrior",
+    "memberGreenMaster": "Green Master",
+    
+    "noRewardsMsg": "No rewards for now! Check back later",
+    "costPts": "Cost: {cost} pts",
+    "@costPts": {
+        "placeholders": {
+            "cost": { "type": "int" }
+        }
+    },
+    "redeemBtn": "Redeem",
+    "redeemSuccess": "Redeemed! Check your email for the code.",
+    
+    "errOutOfStock": "Out of stock! No codes available.",
+    "errInsufficientPoints": "Insufficient points!",
+    "errGeneric": "Failed: {error}",
+    
+    "emailSubjectReward": "Your Reward: {rewardTitle}",
+    "emailBodyCongrats": "<h1>Congrats!</h1><p>Here is your code: <b>{code}</b></p>",
+
+    "stepProgress": "Step {current} of {total}",
+    "@stepProgress": {
+        "placeholders": {
+            "current": { "type": "int" },
+            "total": { "type": "int" }
+        }
+    },
+    
+    "titleCategory": "Select Category",
+    "subtitleCategory": "What type of waste are you recycling?",
+    "nextBtn": "Next",
+    
+    "titleDetails": "Pickup Details",
+    "labelAddress": "Address",
+    "useProfileAddress": "Use Profile Address",
+    "hintAddress": "Enter pickup address",
+    "labelDate": "Date",
+    "selectDate": "Select Date",
+    "labelTimeSlot": "Time Slot",
+    "searchFacilitiesBtn": "Search Facilities",
+    
+    "loadingCollectors": "Locating nearby collectors...",
+    "noFacilitiesFound": "No facilities found nearby.",
+    "changeAddressBtn": "Change Address",
+    "titleSelectFacility": "Select Facility",
+    "subtitleSelectFacility": "These collectors are near you.",
+    
+    "titleConfirm": "Confirm Order",
+    "subtitleConfirm": "Please review your details.",
+    "labelCategory": "Category",
+    "labelFacility": "Facility",
+    "submitRequestBtn": "Submit Pickup Request",
+    
+    "dialogSubmittedTitle": "Submitted!",
+    "dialogSubmittedContent": "Your pickup request has been sent. You will receive an email shortly.",
+    "doneBtn": "Done",
+    
+    "errAddressRequired": "Address is required",
+    "errDateTimeRequired": "Please select Date and Time",
+    "errGpsPermission": "Location permissions are denied",
+
+    "passwordReqTitle": "Password must contain:",
+    "reqMinChars": "At least 8 characters",
+    "reqUppercase": "At least 1 uppercase letter",
+    "reqNumber": "At least 1 number",
+    "selectDate": "Select Date",
+    
+    "profileTitle": "Profile",
+    "personalInfo": "Personal Information",
+    "rewards": "Rewards",
+    "appSettings": "App Settings",
+    "adminDashboard": "Admin Dashboard",
+    "collectorDashboard": "Collector Portal",
+    "logOut": "Log Out",
+    "profilePicUpdated": "Profile picture updated locally!",
+
+    "collectorPortal": "Collector Portal",
+    "tabNewRequests": "New Requests",
+    "tabActiveJobs": "Active Jobs",
+    "noRequestsFound": "No requests found.",
+    "statusPending": "Pending",
+    "statusAccepted": "Accepted",
+    "statusOnTheWay": "On The Way",
+    
+    "btnReject": "Reject",
+    "btnAccept": "Accept",
+    "btnStartPickup": "Start Pickup (On The Way)",
+    "btnCompleteReward": "Complete & Reward User",
+    
+    "msgJobCompleted": "Job Completed! Points awarded.",
+    "errStatusUpdate": "Error updating status: {error}",
+    
+    "emailSubjectComplete": "Pickup Completed! You earned points.",
+    "emailBodyComplete": "<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>{points} points</b> to your account.</p>"
 }
 

@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:greenmalaysia/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../homepage.dart';
-import '../services/auth_service.dart'; // REQUIRED: To create account
+import '../services/auth_service.dart';
 
 class OtpPage extends StatefulWidget {
   final String email;
-  // --- NEW: Data needed to create the account after verification ---
   final String password;
   final String fullName;
   final String dob;
@@ -31,17 +31,15 @@ class OtpPage extends StatefulWidget {
 class _OtpPageState extends State<OtpPage> {
   final TextEditingController _otpController = TextEditingController();
 
-  // Local state for OTP logic
   String? _generatedOtp;
   int _secondsRemaining = 60;
   bool _canResend = false;
   Timer? _timer;
-  bool _isVerifying = false; // To show loading spinner during Firebase creation
+  bool _isVerifying = false;
 
   @override
   void initState() {
     super.initState();
-    // Send OTP immediately when page loads
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _sendMailgunOTP();
     });
@@ -51,14 +49,12 @@ class _OtpPageState extends State<OtpPage> {
   @override
   void dispose() {
     _timer?.cancel();
+    _otpController.dispose();
     super.dispose();
   }
 
-  // --- LOGIC: Send OTP via Mailgun ---
   Future<void> _sendMailgunOTP() async {
     final l10n = AppLocalizations.of(context)!;
-
-    // 1. Generate 6-digit code
     final rng = Random();
     final code = (rng.nextInt(900000) + 100000).toString();
 
@@ -66,7 +62,6 @@ class _OtpPageState extends State<OtpPage> {
       _generatedOtp = code;
     });
 
-    // 2. Configure Mailgun
     final String username = dotenv.env['MAILGUN_SMTP_USERNAME'] ?? '';
     final String password = dotenv.env['MAILGUN_SMTP_PASSWORD'] ?? '';
 
@@ -77,17 +72,25 @@ class _OtpPageState extends State<OtpPage> {
       port: 587,
     );
 
-    // 3. Create Email
+    String htmlContent;
+    try {
+      htmlContent = await rootBundle.loadString(
+        'assets/templates/otp_email.html',
+      );
+      htmlContent = htmlContent.replaceAll('{{code}}', code);
+    } catch (e) {
+      print("Error loading HTML template: $e");
+      htmlContent = "<h1>Your Code: $code</h1>";
+    }
+
     final message = Message()
       ..from = Address(username, 'GreenMalaysia Security')
       ..recipients.add(widget.email)
       ..subject = 'Your Verification Code'
-      ..html =
-          "<h1>$code</h1>\n<p>Please enter this code to verify your account.</p>";
+      ..html = htmlContent;
 
     try {
       await send(message, smtpServer);
-
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -124,16 +127,13 @@ class _OtpPageState extends State<OtpPage> {
     });
   }
 
-  // --- LOGIC: Verify & Create Account ---
   void _verifyOtp() async {
     final l10n = AppLocalizations.of(context)!;
 
-    // 1. Check if Code Matches
     if (_generatedOtp != null && _otpController.text == _generatedOtp) {
-      // 2. Start Loading (Creating account in background)
       setState(() => _isVerifying = true);
 
-      // 3. Call Firebase to create User + Database Entry
+      // Create Account via AuthService
       String? error = await AuthService().signUp(
         email: widget.email,
         password: widget.password,
@@ -142,13 +142,11 @@ class _OtpPageState extends State<OtpPage> {
       );
 
       if (!mounted) return;
-      setState(() => _isVerifying = false); // Stop loading
+      setState(() => _isVerifying = false);
 
       if (error == null) {
-        // Success! Account created.
         _showSuccessDialog(l10n);
       } else {
-        // Failed (e.g. Weak Password)
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Registration Failed: $error"),
@@ -157,7 +155,6 @@ class _OtpPageState extends State<OtpPage> {
         );
       }
     } else {
-      // Wrong Code
       _showFailDialog(l10n);
     }
   }
@@ -174,8 +171,11 @@ class _OtpPageState extends State<OtpPage> {
       builder: (context) {
         return AlertDialog(
           icon: const Icon(Icons.check_circle, color: Colors.green, size: 60),
-          title: Text(l10n.verifiedTitle),
-          content: Text(l10n.verifiedMessage),
+          title: Text(
+            l10n.verifiedTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Text(l10n.verifiedMessage, textAlign: TextAlign.center),
           actions: [
             TextButton(
               onPressed: () {
@@ -199,8 +199,17 @@ class _OtpPageState extends State<OtpPage> {
       builder: (context) {
         return AlertDialog(
           icon: const Icon(Icons.cancel, color: Colors.red, size: 60),
-          title: Text(l10n.failedTitle),
-          content: Text(l10n.failedMessage),
+          title: Text(
+            l10n.failedTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Text(l10n.failedMessage, textAlign: TextAlign.center),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Try Again"),
+            ),
+          ],
         );
       },
     );
@@ -218,31 +227,54 @@ class _OtpPageState extends State<OtpPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Icon for visual appeal
+              const Icon(Icons.mark_email_read, size: 80, color: Colors.green),
+              const SizedBox(height: 20),
+
               Text(
                 l10n.otpSentPrompt(widget.email),
                 textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
+              // OTP Input Field
               TextField(
                 controller: _otpController,
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                 maxLength: 6,
-                style: const TextStyle(fontSize: 24, letterSpacing: 8),
+                style: const TextStyle(
+                  fontSize: 28,
+                  letterSpacing: 8,
+                  fontWeight: FontWeight.bold,
+                ),
                 decoration: const InputDecoration(
                   hintText: "000000",
                   counterText: "",
                   border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.symmetric(vertical: 16),
                 ),
               ),
               const SizedBox(height: 20),
 
-              Text(
-                _canResend
-                    ? l10n.codeExpired
-                    : l10n.resendTimer(_secondsRemaining),
-                style: TextStyle(color: _canResend ? Colors.red : Colors.grey),
+              // Timer / Resend Link
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (!_canResend)
+                    const Icon(Icons.timer, size: 16, color: Colors.grey),
+                  const SizedBox(width: 5),
+                  Text(
+                    _canResend
+                        ? l10n.codeExpired
+                        : l10n.resendTimer(_secondsRemaining),
+                    style: TextStyle(
+                      color: _canResend ? Colors.red : Colors.grey,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
 
               if (_canResend)
@@ -251,18 +283,24 @@ class _OtpPageState extends State<OtpPage> {
                     _sendMailgunOTP();
                     _startTimer();
                   },
-                  child: Text(l10n.resendNow),
+                  child: Text(
+                    l10n.resendNow,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
 
               const SizedBox(height: 40),
 
-              // Show Spinner if creating account, else show Buttons
+              // Action Buttons
               _isVerifying
                   ? const CircularProgressIndicator()
                   : Row(
                       children: [
                         Expanded(
                           child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                            ),
                             onPressed: () => Navigator.pop(context),
                             child: Text(l10n.back),
                           ),
@@ -273,6 +311,7 @@ class _OtpPageState extends State<OtpPage> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
                               foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                             ),
                             onPressed: _verifyOtp,
                             child: Text(l10n.verifyBtn),

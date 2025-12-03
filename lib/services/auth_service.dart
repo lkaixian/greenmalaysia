@@ -80,7 +80,6 @@ class AuthService {
   }
 
   // 2. Login with Email & Password
-  // 2. Login with Email & Password
   Future<String?> signIn(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);

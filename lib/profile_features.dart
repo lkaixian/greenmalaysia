@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +8,7 @@ import 'package:path/path.dart' as path;
 
 class ProfileFeatures {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
   final ImagePicker _picker = ImagePicker();
 
   User? get currentUser => _auth.currentUser;
@@ -56,6 +58,25 @@ class ProfileFeatures {
       print("Error saving local image: $e");
       return null;
     }
+  }
+
+  Future<String> getUserRole() async {
+    if (currentUser == null) return 'user';
+
+    try {
+      DocumentSnapshot doc = await _db
+          .collection('users')
+          .doc(currentUser!.uid)
+          .get();
+
+      if (doc.exists && doc.data() != null) {
+        // Return the role field, or 'user' if it's missing
+        return (doc.data() as Map<String, dynamic>)['role'] ?? 'user';
+      }
+    } catch (e) {
+      print("Error fetching role: $e");
+    }
+    return 'user'; // Default fallback
   }
 
   Future<void> signOut() async {

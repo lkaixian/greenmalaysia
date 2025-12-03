@@ -1,10 +1,15 @@
-import 'dart:io'; // Needed for File
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:greenmalaysia/l10n/app_localizations.dart'; // Import L10n
 import 'package:greenmalaysia/profile_features.dart';
 import 'package:greenmalaysia/screens/login_page.dart';
-import 'personal_information_page.dart';
+import 'package:greenmalaysia/app_config.dart'; // For Admin Tree Shaking
+
+// Sub-pages
+import '../personal_information_page.dart';
 import 'rewards_page.dart';
 import 'app_settings.dart';
+import 'package:greenmalaysia/screens/collector/collector_dashboard.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   // State variables
   String? _localImagePath;
+  String _userRole = 'user'; // 'user', 'admin', or 'collector'
   bool _isLoading = true;
 
   @override
@@ -26,37 +32,39 @@ class _ProfilePageState extends State<ProfilePage> {
     _loadProfileData();
   }
 
-  // Determine what to show on startup
   void _loadProfileData() async {
+    // 1. Load Local Image (if applicable)
     if (!_features.isGoogleUser()) {
-      // If Email User, check for a saved local path
       String? path = await _features.getLocalProfilePicPath();
       setState(() {
         _localImagePath = path;
-        _isLoading = false;
       });
-    } else {
-      // If Google User, we just use currentUser.photoURL directly in build
+    }
+
+    // 2. Load User Role from Firestore
+    String role = await _features.getUserRole();
+
+    if (mounted) {
       setState(() {
+        _userRole = role;
         _isLoading = false;
       });
     }
   }
 
   void _changeProfilePic() async {
-    if (_features.isGoogleUser()) return; // Google users can't change it here
+    final l10n = AppLocalizations.of(context)!;
+    if (_features.isGoogleUser()) return; 
 
-    // 1. Trigger the local save logic
     String? newPath = await _features.setLocalProfilePicture();
 
-    // 2. Update UI
     if (newPath != null) {
       setState(() {
         _localImagePath = newPath;
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Profile picture updated locally!")),
+          SnackBar(content: Text(l10n.profilePicUpdated)),
         );
       }
     }
@@ -75,29 +83,27 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    // LOGIC: Which Image Provider to use?
+    final l10n = AppLocalizations.of(context)!;
+    
+    // Determine Image Source
     ImageProvider? imageProvider;
-
     if (_features.isGoogleUser() && _features.currentUser?.photoURL != null) {
-      // Case A: Google User (Network URL)
       imageProvider = NetworkImage(_features.currentUser!.photoURL!);
     } else if (_localImagePath != null) {
-      // Case B: Email User with custom pic (Local File)
       imageProvider = FileImage(File(_localImagePath!));
     } else {
-      // Case C: No picture (Default)
-      imageProvider = null; // Will show child icon instead
+      imageProvider = null;
     }
 
     bool canEdit = !_features.isGoogleUser();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Profile")),
+      appBar: AppBar(title: Text(l10n.profileTitle)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-            // --- 1. PROFILE PICTURE SECTION ---
+            // --- 1. PROFILE HEADER ---
             Center(
               child: Stack(
                 children: [
@@ -105,7 +111,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     radius: 60,
                     backgroundColor: Colors.grey[200],
                     backgroundImage: imageProvider,
-                    // If no imageProvider (Case C), show the Icon
                     child: imageProvider == null
                         ? const Icon(Icons.person, size: 60, color: Colors.grey)
                         : null,
@@ -117,17 +122,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: GestureDetector(
                         onTap: _changeProfilePic,
                         child: Container(
-                          height: 40,
-                          width: 40,
+                          height: 40, width: 40,
                           decoration: const BoxDecoration(
                             color: Colors.green,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 20,
-                          ),
+                          child: const Icon(Icons.camera_alt, color: Colors.white, size: 20),
                         ),
                       ),
                     ),
@@ -135,8 +135,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SizedBox(height: 16),
-
-            // --- 2. USER NAME ---
             Text(
               _features.currentUser?.displayName ?? "User",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -147,31 +145,47 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 40),
 
-            // --- 3. MENU ITEMS ---
-            _buildProfileItem(Icons.person, "Personal Information", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (c) => const PersonalInformationPage(),
-                ),
-              );
+            // --- 2. MENU ITEMS ---
+            _buildProfileItem(Icons.person, l10n.personalInfo, () {
+              Navigator.push(context, MaterialPageRoute(builder: (c) => const PersonalInformationPage()));
             }),
-            _buildProfileItem(Icons.verified, "Rewards", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (c) => const RewardsPage()),
-              );
+            _buildProfileItem(Icons.verified, l10n.rewards, () {
+              Navigator.push(context, MaterialPageRoute(builder: (c) => const RewardsPage()));
             }),
-            _buildProfileItem(Icons.settings, "App Settings", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (c) => const AppSettingsPage()),
-              );
+            _buildProfileItem(Icons.settings, l10n.appSettings, () {
+              Navigator.push(context, MaterialPageRoute(builder: (c) => const AppSettingsPage()));
             }),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
+
+            // --- 3. SPECIAL DASHBOARDS (Role Based) ---
+            
+            // A. ADMIN DASHBOARD (Developer)
+            // Checks: Global Config + Role
+            if (enableAdminFeatures && _userRole == 'admin' && AppConfig().adminScreenBuilder != null)
+              _buildDashboardButton(
+                l10n.adminDashboard,
+                Icons.admin_panel_settings,
+                Colors.black,
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => AppConfig().adminScreenBuilder!(c)));
+                },
+              ),
+
+            // B. COLLECTOR DASHBOARD (Pickup Company)
+            // Checks: Role Only
+            if (_userRole == 'collector')
+              _buildDashboardButton(
+                l10n.collectorDashboard,
+                Icons.local_shipping,
+                Colors.blue[900]!, // Distinct color
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const CollectorDashboard()));
+                },
+              ),
 
             // --- 4. LOGOUT ---
+            const SizedBox(height: 10),
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -181,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   foregroundColor: Colors.white,
                 ),
                 onPressed: _handleLogout,
-                child: const Text("Log Out"),
+                child: Text(l10n.logOut),
               ),
             ),
           ],
@@ -189,6 +203,8 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
+  // --- UI HELPERS ---
 
   Widget _buildProfileItem(IconData icon, String text, VoidCallback onTap) {
     return Card(
@@ -198,6 +214,23 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(text),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16),
         onTap: onTap,
+      ),
+    );
+  }
+
+  Widget _buildDashboardButton(String text, IconData icon, Color color, VoidCallback onTap) {
+    return Container(
+      width: double.infinity,
+      height: 50,
+      margin: const EdgeInsets.only(bottom: 20),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          foregroundColor: Colors.white,
+        ),
+        icon: Icon(icon),
+        label: Text(text),
+        onPressed: onTap,
       ),
     );
   }

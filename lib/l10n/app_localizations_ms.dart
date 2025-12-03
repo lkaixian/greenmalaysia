@@ -258,4 +258,233 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get radiusHelp => 'Had jarak untuk pengesanan GPS';
+
+  @override
+  String get rewardsTitle => 'Ganjaran';
+
+  @override
+  String get loginFirst => 'Sila log masuk dahulu';
+
+  @override
+  String pointsLabel(int count) {
+    return '$count Mata';
+  }
+
+  @override
+  String membershipLabel(String level) {
+    return 'Keahlian: $level';
+  }
+
+  @override
+  String get memberGreenStarter => 'Pemula Hijau';
+
+  @override
+  String get memberEcoWarrior => 'Pejuang Eko';
+
+  @override
+  String get memberGreenMaster => 'Pakar Hijau';
+
+  @override
+  String get noRewardsMsg => 'Tiada ganjaran buat masa ini! Semak kemudian';
+
+  @override
+  String costPts(int cost) {
+    return 'Kos: $cost mata';
+  }
+
+  @override
+  String get redeemBtn => 'Tebus';
+
+  @override
+  String get redeemSuccess => 'Ditebus! Semak emel anda untuk kod.';
+
+  @override
+  String get errOutOfStock => 'Kehabisan stok! Tiada kod tersedia.';
+
+  @override
+  String get errInsufficientPoints => 'Mata tidak mencukupi!';
+
+  @override
+  String errGeneric(Object error) {
+    return 'Gagal: $error';
+  }
+
+  @override
+  String emailSubjectReward(Object rewardTitle) {
+    return 'Ganjaran Anda: $rewardTitle';
+  }
+
+  @override
+  String emailBodyCongrats(Object code) {
+    return '<h1>Tahniah!</h1><p>Ini kod anda: <b>$code</b></p>';
+  }
+
+  @override
+  String stepProgress(int current, int total) {
+    return 'Langkah $current dari $total';
+  }
+
+  @override
+  String get titleCategory => 'Pilih Kategori';
+
+  @override
+  String get subtitleCategory => 'Apakah jenis sampah yang anda kitar semula?';
+
+  @override
+  String get nextBtn => 'Seterusnya';
+
+  @override
+  String get titleDetails => 'Butiran Kutipan';
+
+  @override
+  String get labelAddress => 'Alamat';
+
+  @override
+  String get useProfileAddress => 'Guna Alamat Profil';
+
+  @override
+  String get hintAddress => 'Masukkan alamat kutipan';
+
+  @override
+  String get labelDate => 'Tarikh';
+
+  @override
+  String get labelTimeSlot => 'Slot Masa';
+
+  @override
+  String get searchFacilitiesBtn => 'Cari Fasiliti';
+
+  @override
+  String get loadingCollectors => 'Mencari pengumpul berdekatan...';
+
+  @override
+  String get noFacilitiesFound => 'Tiada fasiliti ditemui berdekatan.';
+
+  @override
+  String get changeAddressBtn => 'Tukar Alamat';
+
+  @override
+  String get titleSelectFacility => 'Pilih Fasiliti';
+
+  @override
+  String get subtitleSelectFacility => 'Pengumpul ini berada berdekatan anda.';
+
+  @override
+  String get titleConfirm => 'Sahkan Pesanan';
+
+  @override
+  String get subtitleConfirm => 'Sila semak butiran anda.';
+
+  @override
+  String get labelCategory => 'Kategori';
+
+  @override
+  String get labelFacility => 'Fasiliti';
+
+  @override
+  String get submitRequestBtn => 'Hantar Permintaan Kutipan';
+
+  @override
+  String get dialogSubmittedTitle => 'Dihantar!';
+
+  @override
+  String get dialogSubmittedContent =>
+      'Permintaan kutipan anda telah dihantar. Anda akan menerima emel sebentar lagi.';
+
+  @override
+  String get doneBtn => 'Selesai';
+
+  @override
+  String get errAddressRequired => 'Alamat diperlukan';
+
+  @override
+  String get errDateTimeRequired => 'Sila pilih Tarikh dan Masa';
+
+  @override
+  String get errGpsPermission => 'Kebenaran lokasi ditolak';
+
+  @override
+  String get passwordReqTitle => 'Kata laluan mesti mengandungi:';
+
+  @override
+  String get reqMinChars => 'Sekurang-kurangnya 8 aksara';
+
+  @override
+  String get reqUppercase => 'Sekurang-kurangnya 1 huruf besar';
+
+  @override
+  String get reqNumber => 'Sekurang-kurangnya 1 nombor';
+
+  @override
+  String get profileTitle => 'Profil';
+
+  @override
+  String get personalInfo => 'Maklumat Peribadi';
+
+  @override
+  String get rewards => 'Ganjaran';
+
+  @override
+  String get appSettings => 'Tetapan Aplikasi';
+
+  @override
+  String get adminDashboard => 'Panel Admin';
+
+  @override
+  String get collectorDashboard => 'Portal Pengumpul';
+
+  @override
+  String get logOut => 'Log Keluar';
+
+  @override
+  String get profilePicUpdated => 'Gambar profil dikemaskini secara tempatan!';
+
+  @override
+  String get collectorPortal => 'Portal Pengumpul';
+
+  @override
+  String get tabNewRequests => 'Permintaan Baru';
+
+  @override
+  String get tabActiveJobs => 'Tugasan Aktif';
+
+  @override
+  String get noRequestsFound => 'Tiada permintaan ditemui.';
+
+  @override
+  String get statusPending => 'Menunggu';
+
+  @override
+  String get statusAccepted => 'Diterima';
+
+  @override
+  String get statusOnTheWay => 'Dalam Perjalanan';
+
+  @override
+  String get btnReject => 'Tolak';
+
+  @override
+  String get btnAccept => 'Terima';
+
+  @override
+  String get btnStartPickup => 'Mula Kutipan (Dalam Perjalanan)';
+
+  @override
+  String get btnCompleteReward => 'Selesai & Beri Ganjaran';
+
+  @override
+  String get msgJobCompleted => 'Tugasan Selesai! Mata diberikan.';
+
+  @override
+  String errStatusUpdate(Object error) {
+    return 'Ralat mengemaskini status: $error';
+  }
+
+  @override
+  String get emailSubjectComplete => 'Kutipan Selesai! Anda dapat mata.';
+
+  @override
+  String emailBodyComplete(Object points) {
+    return '<h1>Syabas!</h1><p>Kutipan kitar semula anda selesai. Kami telah menambah <b>$points mata</b> ke akaun anda.</p>';
+  }
 }

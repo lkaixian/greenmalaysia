@@ -258,4 +258,233 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get radiusHelp => 'Distance threshold for GPS detection';
+
+  @override
+  String get rewardsTitle => 'Rewards';
+
+  @override
+  String get loginFirst => 'Please login first';
+
+  @override
+  String pointsLabel(int count) {
+    return '$count Points';
+  }
+
+  @override
+  String membershipLabel(String level) {
+    return 'Membership: $level';
+  }
+
+  @override
+  String get memberGreenStarter => 'Green Starter';
+
+  @override
+  String get memberEcoWarrior => 'Eco Warrior';
+
+  @override
+  String get memberGreenMaster => 'Green Master';
+
+  @override
+  String get noRewardsMsg => 'No rewards for now! Check back later';
+
+  @override
+  String costPts(int cost) {
+    return 'Cost: $cost pts';
+  }
+
+  @override
+  String get redeemBtn => 'Redeem';
+
+  @override
+  String get redeemSuccess => 'Redeemed! Check your email for the code.';
+
+  @override
+  String get errOutOfStock => 'Out of stock! No codes available.';
+
+  @override
+  String get errInsufficientPoints => 'Insufficient points!';
+
+  @override
+  String errGeneric(Object error) {
+    return 'Failed: $error';
+  }
+
+  @override
+  String emailSubjectReward(Object rewardTitle) {
+    return 'Your Reward: $rewardTitle';
+  }
+
+  @override
+  String emailBodyCongrats(Object code) {
+    return '<h1>Congrats!</h1><p>Here is your code: <b>$code</b></p>';
+  }
+
+  @override
+  String stepProgress(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get titleCategory => 'Select Category';
+
+  @override
+  String get subtitleCategory => 'What type of waste are you recycling?';
+
+  @override
+  String get nextBtn => 'Next';
+
+  @override
+  String get titleDetails => 'Pickup Details';
+
+  @override
+  String get labelAddress => 'Address';
+
+  @override
+  String get useProfileAddress => 'Use Profile Address';
+
+  @override
+  String get hintAddress => 'Enter pickup address';
+
+  @override
+  String get labelDate => 'Date';
+
+  @override
+  String get labelTimeSlot => 'Time Slot';
+
+  @override
+  String get searchFacilitiesBtn => 'Search Facilities';
+
+  @override
+  String get loadingCollectors => 'Locating nearby collectors...';
+
+  @override
+  String get noFacilitiesFound => 'No facilities found nearby.';
+
+  @override
+  String get changeAddressBtn => 'Change Address';
+
+  @override
+  String get titleSelectFacility => 'Select Facility';
+
+  @override
+  String get subtitleSelectFacility => 'These collectors are near you.';
+
+  @override
+  String get titleConfirm => 'Confirm Order';
+
+  @override
+  String get subtitleConfirm => 'Please review your details.';
+
+  @override
+  String get labelCategory => 'Category';
+
+  @override
+  String get labelFacility => 'Facility';
+
+  @override
+  String get submitRequestBtn => 'Submit Pickup Request';
+
+  @override
+  String get dialogSubmittedTitle => 'Submitted!';
+
+  @override
+  String get dialogSubmittedContent =>
+      'Your pickup request has been sent. You will receive an email shortly.';
+
+  @override
+  String get doneBtn => 'Done';
+
+  @override
+  String get errAddressRequired => 'Address is required';
+
+  @override
+  String get errDateTimeRequired => 'Please select Date and Time';
+
+  @override
+  String get errGpsPermission => 'Location permissions are denied';
+
+  @override
+  String get passwordReqTitle => 'Password must contain:';
+
+  @override
+  String get reqMinChars => 'At least 8 characters';
+
+  @override
+  String get reqUppercase => 'At least 1 uppercase letter';
+
+  @override
+  String get reqNumber => 'At least 1 number';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get personalInfo => 'Personal Information';
+
+  @override
+  String get rewards => 'Rewards';
+
+  @override
+  String get appSettings => 'App Settings';
+
+  @override
+  String get adminDashboard => 'Admin Dashboard';
+
+  @override
+  String get collectorDashboard => 'Collector Portal';
+
+  @override
+  String get logOut => 'Log Out';
+
+  @override
+  String get profilePicUpdated => 'Profile picture updated locally!';
+
+  @override
+  String get collectorPortal => 'Collector Portal';
+
+  @override
+  String get tabNewRequests => 'New Requests';
+
+  @override
+  String get tabActiveJobs => 'Active Jobs';
+
+  @override
+  String get noRequestsFound => 'No requests found.';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusAccepted => 'Accepted';
+
+  @override
+  String get statusOnTheWay => 'On The Way';
+
+  @override
+  String get btnReject => 'Reject';
+
+  @override
+  String get btnAccept => 'Accept';
+
+  @override
+  String get btnStartPickup => 'Start Pickup (On The Way)';
+
+  @override
+  String get btnCompleteReward => 'Complete & Reward User';
+
+  @override
+  String get msgJobCompleted => 'Job Completed! Points awarded.';
+
+  @override
+  String errStatusUpdate(Object error) {
+    return 'Error updating status: $error';
+  }
+
+  @override
+  String get emailSubjectComplete => 'Pickup Completed! You earned points.';
+
+  @override
+  String emailBodyComplete(Object points) {
+    return '<h1>Great Job!</h1><p>Your recycling pickup is complete. We added <b>$points points</b> to your account.</p>';
+  }
 }
