@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Required for number input
+import 'package:flutter/services.dart';
 import 'package:greenmalaysia/services/settings_service.dart';
 import 'package:greenmalaysia/l10n/app_localizations.dart';
 
@@ -11,14 +11,12 @@ class AppSettingsPage extends StatefulWidget {
 }
 
 class _AppSettingsPageState extends State<AppSettingsPage> {
-  // Local state for safety lock
   bool _isLocked = true;
   final TextEditingController _radiusController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // Load current radius into controller
     final settings = SettingsService();
     _radiusController.text = settings.navRadius.toString();
   }
@@ -26,17 +24,23 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
   @override
   Widget build(BuildContext context) {
     final settings = SettingsService();
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return ListenableBuilder(
       listenable: settings,
       builder: (context, child) {
         final l10n = AppLocalizations.of(context)!;
 
+        // --- FIX: Dynamic Colors for Locked State ---
+        // Light Mode: Grey[200] (Light Grey)
+        // Dark Mode: Grey[800] (Dark Grey) or Surface color
+        Color lockedFillColor = isDark ? Colors.grey[800]! : Colors.grey[200]!;
+
         return Scaffold(
           appBar: AppBar(title: Text(l10n.settingsTitle)),
           body: ListView(
             children: [
-              // 1. LANGUAGE OPTION
+              // ... (Language Option code remains the same) ...
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
                 child: Text(
@@ -61,10 +65,9 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 onChanged: (val) =>
                     settings.updateLocale(const Locale('ms', '')),
               ),
-
               const Divider(),
 
-              // 2. AI ANALYSIS OPTION
+              // ... (AI Option code remains the same) ...
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
@@ -87,10 +90,9 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 value: settings.isAiLiveMode,
                 onChanged: (val) => settings.updateAiMode(val),
               ),
-
               const Divider(),
 
-              // 3. THEME OPTION
+              // ... (Theme Option code remains the same) ...
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
@@ -149,30 +151,28 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                   },
                 ),
               ),
-
               const Divider(),
 
-              // 4. ADVANCED SECTION (NEW)
+              // 4. ADVANCED SECTION (UPDATED)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
-                  l10n.advanced, // Localized "Advanced"
+                  l10n.advanced,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.red, // Red to indicate caution
+                    color: Colors.red,
                   ),
                 ),
               ),
 
-              // A. Safety Toggle
               CheckboxListTile(
                 secondary: const Icon(
                   Icons.warning_amber_rounded,
                   color: Colors.orange,
                 ),
-                title: Text(l10n.unlockAdvanced), // "Unlock Advanced Features"
+                title: Text(l10n.unlockAdvanced),
                 subtitle: const Text("Untick to edit sensitive settings"),
-                value: _isLocked, // Ticked = Locked
+                value: _isLocked,
                 activeColor: Colors.red,
                 onChanged: (bool? value) {
                   setState(() {
@@ -181,7 +181,6 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 },
               ),
 
-              // B. Radius Input
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
@@ -189,17 +188,23 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 ),
                 child: TextField(
                   controller: _radiusController,
-                  enabled: !_isLocked, // Disable if locked
+                  enabled: !_isLocked,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  style: TextStyle(
+                    // Ensure text color is readable
+                    color: _isLocked
+                        ? (isDark ? Colors.white54 : Colors.black38)
+                        : (isDark ? Colors.white : Colors.black),
+                  ),
                   decoration: InputDecoration(
-                    labelText: l10n.radiusSet, // "Navigation Radius (m)"
-                    helperText: l10n.radiusHelp, // "Distance threshold..."
+                    labelText: l10n.radiusSet,
+                    helperText: l10n.radiusHelp,
                     suffixText: "m",
                     border: const OutlineInputBorder(),
                     filled: true,
-                    // Grey out background if locked
-                    fillColor: _isLocked ? Colors.grey[200] : null,
+                    // FIX: Use dynamic color for background
+                    fillColor: _isLocked ? lockedFillColor : null,
                     prefixIcon: const Icon(Icons.radar),
                   ),
                   onChanged: (value) {

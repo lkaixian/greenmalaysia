@@ -1,0 +1,5 @@
+flutter_icons:
+  android: "mipmap_ic_launcher_collector" # Different Name!
+  ios: true
+  image_path: "assets/icons/icon_collector.png"
+  remove_alpha_ios: true

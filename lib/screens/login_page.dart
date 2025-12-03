@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart'; // Needed to fetch role
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:greenmalaysia/l10n/app_localizations.dart';
+import 'package:greenmalaysia/app_config.dart'; // Import Config for redirection
 import '../homepage.dart';
 import 'signup_page.dart';
 import '../services/auth_service.dart';
@@ -16,11 +19,63 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
-
-  // Instance of our Auth Service
   final AuthService _authService = AuthService();
-
   bool _isLoading = false;
+
+  // --- HELPER: HANDLE REDIRECT BASED ON ROLE ---
+  Future<void> _handleLoginSuccess() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    // 1. Fetch User Role from Firestore
+    String role = 'user';
+    try {
+      var doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+      if (doc.exists) {
+        role = doc.data()?['role'] ?? 'user';
+      }
+    } catch (e) {
+      print("Error fetching role: $e");
+    }
+
+    // 2. Save Login State
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+
+    if (!mounted) return;
+
+    // 3. Route based on Role & AppConfig
+    if (role == 'collector') {
+      // Check if this APK has the Collector Dashboard installed
+      if (AppConfig().collectorScreenBuilder != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (c) => AppConfig().collectorScreenBuilder!(c),
+          ),
+        );
+      } else {
+        // Prevent Drivers from logging into the User App
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Drivers must use the 'GreenMalaysia Driver' app."),
+            backgroundColor: Colors.red,
+          ),
+        );
+        await _authService.signOut();
+        await prefs.setBool('isLoggedIn', false);
+      }
+    } else {
+      // Admin & Regular Users go to Home
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (c) => const HomePage()),
+      );
+    }
+  }
 
   void _doLogin() async {
     final l10n = AppLocalizations.of(context)!;
@@ -34,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() => _isLoading = true);
 
-    // Call Firebase
     String? error = await _authService.signIn(
       _emailController.text.trim(),
       _passController.text.trim(),
@@ -43,24 +97,11 @@ class _LoginPageState extends State<LoginPage> {
     if (mounted) setState(() => _isLoading = false);
 
     if (error == null) {
-      // Success
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('isLoggedIn', true);
-
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (c) => const HomePage()),
-        );
-      }
+      await _handleLoginSuccess(); // Call helper
     } else {
-      // Failure
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(error, style: const TextStyle(color: Colors.white)),
-            backgroundColor: Colors.red,
-          ),
+          SnackBar(content: Text(error), backgroundColor: Colors.red),
         );
       }
     }
@@ -75,15 +116,7 @@ class _LoginPageState extends State<LoginPage> {
     if (mounted) setState(() => _isLoading = false);
 
     if (userCredential != null) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('isLoggedIn', true);
-
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-      }
+      await _handleLoginSuccess(); // Call helper
     } else {
       if (mounted) {
         ScaffoldMessenger.of(
@@ -100,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (dialogContext) {
-        // Renamed to dialogContext to avoid confusion
         return AlertDialog(
           title: Text(l10n.resetPasswordTitle),
           content: Column(
@@ -135,23 +167,17 @@ class _LoginPageState extends State<LoginPage> {
                 String email = resetEmailController.text.trim();
                 if (email.isEmpty) return;
 
-                // 1. Close the dialog first
                 Navigator.pop(dialogContext);
 
-                // 2. CRITICAL FIX: Check if the PARENT page (LoginPage) is still there
                 if (!mounted) return;
-
-                // 3. Show loading snackbar using the PARENT context, not the dialog context
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(SnackBar(content: Text(l10n.loading)));
 
-                // 4. Call Service (Async operation)
                 String? error = await _authService.sendPasswordResetEmail(
                   email,
                 );
 
-                // 5. CRITICAL FIX: Check mounted again after the await
                 if (!mounted) return;
 
                 if (error == null) {
@@ -221,7 +247,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      // --- NEW: Forgot Password Link ---
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -233,7 +258,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
 
-                      // ---------------------------------
                       const SizedBox(height: 10),
 
                       SizedBox(

@@ -5,10 +5,11 @@
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:label="greenmalaysia"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/mipmap_ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -53,3 +54,6 @@
         </intent>
     </queries>
 </manifest>
+anifest>
+anifest>
+anifest>

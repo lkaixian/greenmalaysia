@@ -1,0 +1,5 @@
+flutter_icons:
+  android: "mipmap_ic_launcher_admin" # Different Name!
+  ios: true
+  image_path: "assets/icons/icon_admin.png"
+  remove_alpha_ios: true

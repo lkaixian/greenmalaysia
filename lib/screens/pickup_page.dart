@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:greenmalaysia/services/pickup_service.dart';
-import 'package:greenmalaysia/services/notification_service.dart';
+import 'package:greenmalaysia/services/notification_service.dart'; // Ensure this is imported
 import 'package:greenmalaysia/l10n/app_localizations.dart';
 
 class PickupPage extends StatefulWidget {
@@ -123,47 +123,71 @@ class _PickupPageState extends State<PickupPage> {
     }
   }
 
-  // --- LOGIC: SUBMIT ORDER & NOTIFY ---
+  // --- LOGIC: SUBMIT ---
   void _submitOrder() async {
     final l10n = AppLocalizations.of(context)!;
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
-    // 1. Save to Database
-    await _service.createOrder(
-      userId: user.uid,
-      userEmail: user.email!,
-      facilityId: _selectedFacility!['id'],
-      facilityName: _selectedFacility!['name'],
-      category: _selectedCategory!,
-      address: _addressController.text,
-      date: _selectedDate!,
-      timeSlot: _selectedTimeSlot!,
+    // 1. SHOW LOADING DIALOG (Blocking)
+    // barrierDismissible: false prevents user from clicking outside to close it
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
-    // 2. Trigger Local Notification
-    await NotificationService().notifyPickupSubmitted(_selectedCategory!);
-
-    if (mounted) {
-      // 3. Show In-App Dialog
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (c) => AlertDialog(
-          icon: const Icon(Icons.check_circle, color: Colors.green, size: 60),
-          title: Text(l10n.dialogSubmittedTitle),
-          content: Text(l10n.dialogSubmittedContent),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(c);
-                Navigator.pop(context);
-              },
-              child: Text(l10n.doneBtn),
-            ),
-          ],
-        ),
+    try {
+      // 2. Perform Database Operation
+      await _service.createOrder(
+        userId: user.uid,
+        userEmail: user.email!,
+        facilityId: _selectedFacility!['id'],
+        facilityName: _selectedFacility!['name'],
+        category: _selectedCategory!,
+        address: _addressController.text,
+        date: _selectedDate!,
+        timeSlot: _selectedTimeSlot!,
       );
+
+      // 3. Trigger Notification
+      await NotificationService().notifyPickupSubmitted(_selectedCategory!);
+
+      // 4. DISMISS LOADING DIALOG
+      if (mounted) Navigator.pop(context);
+
+      // 5. Show Success Dialog
+      if (mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (c) => AlertDialog(
+            icon: const Icon(Icons.check_circle, color: Colors.green, size: 60),
+            title: Text(l10n.dialogSubmittedTitle),
+            content: Text(l10n.dialogSubmittedContent),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(c); // Close Dialog
+                  Navigator.pop(context); // Close Page (Return to Home)
+                },
+                child: Text(l10n.doneBtn),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      // Handle Errors
+      if (mounted) Navigator.pop(context); // Close Loading Dialog
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Submission Failed: $e"),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 

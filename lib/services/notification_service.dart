@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -24,6 +25,30 @@ class NotificationService {
     await _notificationsPlugin.initialize(
       InitializationSettings(android: androidSettings, iOS: iosSettings),
     );
+  }
+
+  Future<bool> requestPermissions() async {
+    bool? isGranted = false;
+
+    if (Platform.isIOS) {
+      // iOS Permission Request
+      isGranted = await _notificationsPlugin
+          .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin
+          >()
+          ?.requestPermissions(alert: true, badge: true, sound: true);
+    } else if (Platform.isAndroid) {
+      // Android 13+ Permission Request
+      final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
+          _notificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin
+              >();
+
+      isGranted = await androidImplementation?.requestNotificationsPermission();
+    }
+
+    return isGranted ?? false;
   }
 
   NotificationDetails _getChannelDetails(String type) {
