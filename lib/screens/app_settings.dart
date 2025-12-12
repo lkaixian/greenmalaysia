@@ -31,16 +31,14 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
       builder: (context, child) {
         final l10n = AppLocalizations.of(context)!;
 
-        // --- FIX: Dynamic Colors for Locked State ---
-        // Light Mode: Grey[200] (Light Grey)
-        // Dark Mode: Grey[800] (Dark Grey) or Surface color
+        // Dynamic color for locked/disabled fields
         Color lockedFillColor = isDark ? Colors.grey[800]! : Colors.grey[200]!;
 
         return Scaffold(
           appBar: AppBar(title: Text(l10n.settingsTitle)),
           body: ListView(
             children: [
-              // ... (Language Option code remains the same) ...
+              // --- 1. LANGUAGE SECTION ---
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
                 child: Text(
@@ -67,7 +65,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
               ),
               const Divider(),
 
-              // ... (AI Option code remains the same) ...
+              // --- 2. AI CONFIGURATION SECTION ---
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
@@ -78,6 +76,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                   ),
                 ),
               ),
+              // A. Live Mode Toggle
               SwitchListTile(
                 title: Text(
                   settings.isAiLiveMode ? l10n.liveMode : l10n.nonLiveMode,
@@ -90,9 +89,19 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 value: settings.isAiLiveMode,
                 onChanged: (val) => settings.updateAiMode(val),
               ),
+
+              // B. NEW: High Precision Toggle
+              SwitchListTile(
+                title: const Text("High Precision Model"), // Add to l10n later
+                subtitle: const Text("Uses FP32. Slower but more accurate."),
+                // We assume SettingsService now has this property (see step 2 below)
+                value: settings.useHighPrecision,
+                activeColor: Colors.orange,
+                onChanged: (val) => settings.updateHighPrecision(val),
+              ),
               const Divider(),
 
-              // ... (Theme Option code remains the same) ...
+              // --- 3. THEME SECTION ---
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
@@ -153,7 +162,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
               ),
               const Divider(),
 
-              // 4. ADVANCED SECTION (UPDATED)
+              // --- 4. ADVANCED SECTION ---
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 child: Text(
@@ -192,7 +201,6 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   style: TextStyle(
-                    // Ensure text color is readable
                     color: _isLocked
                         ? (isDark ? Colors.white54 : Colors.black38)
                         : (isDark ? Colors.white : Colors.black),
@@ -203,7 +211,6 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                     suffixText: "m",
                     border: const OutlineInputBorder(),
                     filled: true,
-                    // FIX: Use dynamic color for background
                     fillColor: _isLocked ? lockedFillColor : null,
                     prefixIcon: const Icon(Icons.radar),
                   ),

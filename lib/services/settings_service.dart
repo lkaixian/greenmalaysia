@@ -17,6 +17,7 @@ class SettingsService extends ChangeNotifier {
   Locale _locale = const Locale('en', 'GB');
   ThemeMode _themeMode = ThemeMode.system;
   bool _isAiLiveMode = false;
+  bool _useHighPrecision = false;
 
   // NEW: Navigation Radius (Default 5000 meters)
   int _navRadius = 5000;
@@ -25,7 +26,8 @@ class SettingsService extends ChangeNotifier {
   Locale get locale => _locale;
   ThemeMode get themeMode => _themeMode;
   bool get isAiLiveMode => _isAiLiveMode;
-  int get navRadius => _navRadius; // NEW Getter
+  int get navRadius => _navRadius;
+  bool get useHighPrecision => _useHighPrecision;
 
   // --- INITIALIZATION ---
   Future<void> loadSettings() async {
@@ -50,8 +52,11 @@ class SettingsService extends ChangeNotifier {
     // Load AI Mode
     _isAiLiveMode = prefs.getBool('ai_live_mode') ?? false;
 
+    // Load AI Precision (if needed in future)
+    _useHighPrecision = prefs.getBool('ai_high_precision') ?? false;
+
     // NEW: Load Radius
-    _navRadius = prefs.getInt('nav_radius') ?? 50;
+    _navRadius = prefs.getInt('nav_radius') ?? 5000;
 
     notifyListeners();
   }
@@ -91,5 +96,13 @@ class SettingsService extends ChangeNotifier {
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('nav_radius', newRadius);
+  }
+
+  Future<void> updateHighPrecision(bool useHighPrecision) async {
+    if (_useHighPrecision == useHighPrecision) return;
+    _useHighPrecision = useHighPrecision;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('ai_high_precision', useHighPrecision);
   }
 }

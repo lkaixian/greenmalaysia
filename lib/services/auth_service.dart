@@ -108,9 +108,7 @@ class AuthService {
 
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate(
         scopeHint: ['email', 'profile'],
-      );
-
-      if (googleUser == null) return null; // Cancelled
+      ); // Cancelled
 
       final GoogleSignInAuthentication googleAuth =
           googleUser.authentication;

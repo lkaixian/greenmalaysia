@@ -1,65 +1,172 @@
 import 'dart:io';
-import 'package:camera/camera.dart';
-import 'package:flutter/material.dart'; // <--- ADD THIS LINE
+import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vision/flutter_vision.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:camera/camera.dart';
+import 'package:ultralytics_yolo/ultralytics_yolo.dart';
 
 class AnalysisService {
-  final FlutterVision _vision = FlutterVision();
+  static const String _modelPathLow = 'assets/models/mta-v1a-low.tflite';
+  static const String _modelPathHigh = 'assets/models/mta-v1a-high.tflite';
+
   final ImagePicker _picker = ImagePicker();
+  YOLO? _yoloModel;
+  bool _isModelLoaded = false;
+  bool _usingHighAccuracy = false;
 
-  // 1. Load Model
-  Future<void> loadModel() async {
-    await _vision.loadYoloModel(
-      labels: 'assets/models/labels.txt',
-      modelPath: 'assets/models/modelv1a.tflite',
-      modelVersion: "yolov8",
-      quantization: true,
-      numThreads: 2,
-      useGpu: false,
-    );
+  bool get isLoaded => _isModelLoaded;
+
+  // --- 1. Copy Asset Helper ---
+  Future<String> _copyAssetToLocal(String assetPath) async {
+    final String filename = assetPath.split('/').last;
+    final directory = await getApplicationDocumentsDirectory();
+    final String filePath = '${directory.path}/$filename';
+    final File file = File(filePath);
+
+    if (!await file.exists()) {
+      final ByteData data = await rootBundle.load(assetPath);
+      final List<int> bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes);
+    }
+    return filePath;
   }
 
-  // 2. Detect on Live Camera Frame
-  Future<List<Map<String, dynamic>>> detectOnFrame(CameraImage image) async {
-    return await _vision.yoloOnFrame(
-      bytesList: image.planes.map((plane) => plane.bytes).toList(),
-      imageHeight: image.height,
-      imageWidth: image.width,
-      iouThreshold: 0.4,
-      confThreshold: 0.1,
-      classThreshold: 0.5,
-    );
+  // --- 2. Load Model ---
+  Future<void> loadModel({bool useHighAccuracy = false}) async {
+    if (_isModelLoaded && _usingHighAccuracy == useHighAccuracy) return;
+    if (_isModelLoaded) await dispose();
+
+    try {
+      final String assetPath = useHighAccuracy ? _modelPathHigh : _modelPathLow;
+      final String localPath = await _copyAssetToLocal(assetPath);
+
+      debugPrint("🔄 Loading model from: $localPath");
+
+      _yoloModel = YOLO(
+        modelPath: localPath,
+        task: YOLOTask.segment, // Segmentation Task
+        useGpu: true,
+      );
+
+      bool success = await _yoloModel!.loadModel();
+
+      if (success) {
+        _isModelLoaded = true;
+        _usingHighAccuracy = useHighAccuracy;
+        debugPrint("✅ Model Loaded Successfully");
+      } else {
+        debugPrint("❌ Failed to load model");
+      }
+    } catch (e) {
+      debugPrint("❌ CRITICAL: Failed to initialize model: $e");
+      _isModelLoaded = false;
+    }
   }
 
-  // 3. Detect on Static Image File
+  // --- 3. Prediction Logic (Updated to match Official Sample) ---
   Future<List<Map<String, dynamic>>> detectOnImage(File imageFile) async {
-    // Read file bytes
-    Uint8List bytes = await imageFile.readAsBytes();
-
-    // We need to decode the image to get its width/height for the AI model
-    // This function comes from 'package:flutter/material.dart'
-    var decodedImage = await decodeImageFromList(bytes);
-
-    return await _vision.yoloOnImage(
-      bytesList: bytes,
-      imageHeight: decodedImage.height,
-      imageWidth: decodedImage.width,
-      iouThreshold: 0.4,
-      confThreshold: 0.4,
-      classThreshold: 0.5,
-    );
+    if (!_isModelLoaded || _yoloModel == null) return [];
+    try {
+      final Uint8List imageBytes = await imageFile.readAsBytes();
+      return _predictBytes(imageBytes);
+    } catch (e) {
+      debugPrint("⚠️ Prediction error: $e");
+      return [];
+    }
   }
 
-  // 4. Pick Image from Gallery
+  // Placeholder for live frame detection
+  Future<List<Map<String, dynamic>>> detectOnFrame(
+    CameraImage image, {
+    double? confThreshold,
+    double? iouThreshold,
+  }) async {
+    return [];
+  }
+
+  Future<List<Map<String, dynamic>>> _predictBytes(Uint8List bytes) async {
+    if (_yoloModel == null) return [];
+
+    // Run Prediction
+    final results = await _yoloModel!.predict(
+      bytes,
+      confidenceThreshold: 0.35,
+      iouThreshold: 0.45,
+    );
+
+    // ✅ FIX: Use 'boxes' as per official sample
+    if (results['boxes'] == null) return [];
+
+    final List<dynamic> boxes = results['boxes'] as List<dynamic>;
+
+    return boxes.map<Map<String, dynamic>>((box) {
+      // 1. Tag
+      String tag = box['class']?.toString() ?? "Unknown";
+
+      // 2. Confidence
+      final double confidence = box['confidence'] ?? 0.0;
+
+      // 3. Bounding Box [x1, y1, x2, y2]
+      // The sample usually puts coordinates directly in the object or in a 'box' key depending on version.
+      // We check both for safety.
+      List<double> boxData = [0.0, 0.0, 0.0, 0.0];
+
+      if (box.containsKey('x1') && box.containsKey('y1')) {
+        // Flat structure (common in some versions)
+        boxData = [
+          (box['x1'] as num).toDouble(),
+          (box['y1'] as num).toDouble(),
+          (box['x2'] as num).toDouble(),
+          (box['y2'] as num).toDouble(),
+        ];
+      } else if (box['box'] != null) {
+        // Nested structure
+        final b = box['box'];
+        if (b is List) {
+          boxData = b.map((e) => (e as num).toDouble()).toList().cast<double>();
+        }
+      }
+
+      // 4. Segmentation Mask/Polygons
+      // The sample says: box.containsKey('mask')
+      // Note: 'polygons' is often a processed version of 'mask'. We check both.
+      List<dynamic>? polygons;
+
+      if (box.containsKey('polygons')) {
+        polygons = box['polygons'];
+      } else if (box.containsKey('mask')) {
+        // If it's a raw bitmap mask, we pass it.
+        // If the plugin converts it to points, it might be here.
+        // For now, we assume the UI Painter handles what comes out.
+        polygons = box['mask'] as List<dynamic>?;
+      }
+
+      return {
+        'tag': tag,
+        'confidence': confidence,
+        'box': boxData,
+        'polygons': polygons,
+      };
+    }).toList();
+  }
+
   Future<File?> pickImageFromGallery() async {
-    final XFile? file = await _picker.pickImage(source: ImageSource.gallery);
-    if (file != null) return File(file.path);
+    try {
+      final XFile? file = await _picker.pickImage(source: ImageSource.gallery);
+      if (file != null) return File(file.path);
+    } catch (e) {
+      debugPrint("⚠️ Gallery error: $e");
+    }
     return null;
   }
 
-  void close() {
-    _vision.closeYoloModel();
+  Future<void> dispose() async {
+    if (_yoloModel != null) {
+      await _yoloModel!.dispose();
+      _yoloModel = null;
+    }
+    _isModelLoaded = false;
   }
 }
