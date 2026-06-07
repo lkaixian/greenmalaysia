@@ -190,6 +190,81 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
                 },
               ),
 
+              // --- A. Show Performance HUD ---
+              SwitchListTile(
+                secondary: const Icon(Icons.speed, color: Colors.cyan),
+                title: const Text("Show Performance HUD"),
+                subtitle: const Text("Display model, CPU, FPS & timing overlay"),
+                value: settings.showHud,
+                activeColor: Colors.cyan,
+                onChanged: _isLocked ? null : (val) => settings.updateShowHud(val),
+              ),
+
+              // --- B. Force Model ---
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: DropdownButtonFormField<String>(
+                  value: settings.forcedModel,
+                  decoration: InputDecoration(
+                    labelText: "AI Model",
+                    helperText: "Auto selects based on your CPU",
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.memory),
+                    filled: _isLocked,
+                    fillColor: _isLocked ? lockedFillColor : null,
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 'auto', child: Text("Auto (Smart Select)")),
+                    DropdownMenuItem(value: 'mta-v2-yolov11n-low.tflite', child: Text("YOLOv11n Low (3.1MB)")),
+                    DropdownMenuItem(value: 'mta-v2-yolov11n-high.tflite', child: Text("YOLOv11n High (11.1MB)")),
+                    DropdownMenuItem(value: 'mta-v2-yolov11s-low.tflite', child: Text("YOLOv11s Low (10.1MB)")),
+                    DropdownMenuItem(value: 'mta-v2-yolov11s-high.tflite', child: Text("YOLOv11s High (38.7MB)")),
+                  ],
+                  onChanged: _isLocked ? null : (val) {
+                    if (val != null) settings.updateForcedModel(val);
+                  },
+                ),
+              ),
+
+              // --- C. Thread Count ---
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: DropdownButtonFormField<int>(
+                  value: settings.aiThreadCount,
+                  decoration: InputDecoration(
+                    labelText: "AI Thread Count",
+                    helperText: "0 = Auto (recommended)",
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.developer_board),
+                    filled: _isLocked,
+                    fillColor: _isLocked ? lockedFillColor : null,
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 0, child: Text("Auto")),
+                    DropdownMenuItem(value: 1, child: Text("1 Thread")),
+                    DropdownMenuItem(value: 2, child: Text("2 Threads")),
+                    DropdownMenuItem(value: 3, child: Text("3 Threads")),
+                    DropdownMenuItem(value: 4, child: Text("4 Threads")),
+                    DropdownMenuItem(value: 6, child: Text("6 Threads")),
+                    DropdownMenuItem(value: 8, child: Text("8 Threads")),
+                  ],
+                  onChanged: _isLocked ? null : (val) {
+                    if (val != null) settings.updateAiThreadCount(val);
+                  },
+                ),
+              ),
+
+              // --- D. Force GPU ---
+              SwitchListTile(
+                secondary: const Icon(Icons.graphic_eq, color: Colors.orange),
+                title: const Text("Force GPU Delegate"),
+                subtitle: const Text("May crash on unsupported devices"),
+                value: settings.forceGpu,
+                activeColor: Colors.orange,
+                onChanged: _isLocked ? null : (val) => settings.updateForceGpu(val),
+              ),
+
+              // --- E. Navigation Radius ---
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,

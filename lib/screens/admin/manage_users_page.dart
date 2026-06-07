@@ -153,7 +153,7 @@ class _ManageUsersPageState extends State<ManageUsersPage> {
 
                   // Role Dropdown (Admin/User)
                   DropdownButtonFormField<String>(
-                    value: role,
+                    initialValue: role,
                     decoration: const InputDecoration(labelText: "Role"),
                     items: const [
                       DropdownMenuItem(value: 'user', child: Text("User")),

@@ -18,6 +18,11 @@ class SettingsService extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.system;
   bool _isAiLiveMode = false;
   bool _useHighPrecision = false;
+  bool _isVerboseMode = false;
+  String _forcedModel = 'auto';
+  bool _forceGpu = false;
+  bool _showHud = false;
+  int _aiThreadCount = 0; // 0 = auto
 
   // NEW: Navigation Radius (Default 5000 meters)
   int _navRadius = 5000;
@@ -28,6 +33,11 @@ class SettingsService extends ChangeNotifier {
   bool get isAiLiveMode => _isAiLiveMode;
   int get navRadius => _navRadius;
   bool get useHighPrecision => _useHighPrecision;
+  bool get isVerboseMode => _isVerboseMode;
+  String get forcedModel => _forcedModel;
+  bool get forceGpu => _forceGpu;
+  bool get showHud => _showHud;
+  int get aiThreadCount => _aiThreadCount;
 
   // --- INITIALIZATION ---
   Future<void> loadSettings() async {
@@ -54,6 +64,21 @@ class SettingsService extends ChangeNotifier {
 
     // Load AI Precision (if needed in future)
     _useHighPrecision = prefs.getBool('ai_high_precision') ?? false;
+
+    // Load Verbose Mode
+    _isVerboseMode = prefs.getBool('verbose_mode') ?? false;
+
+    // Load Forced Model
+    _forcedModel = prefs.getString('forced_model') ?? 'auto';
+
+    // Load Force GPU
+    _forceGpu = prefs.getBool('force_gpu') ?? false;
+
+    // Load Show HUD
+    _showHud = prefs.getBool('show_hud') ?? false;
+
+    // Load AI Thread Count
+    _aiThreadCount = prefs.getInt('ai_thread_count') ?? 0;
 
     // NEW: Load Radius
     _navRadius = prefs.getInt('nav_radius') ?? 5000;
@@ -104,5 +129,45 @@ class SettingsService extends ChangeNotifier {
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('ai_high_precision', useHighPrecision);
+  }
+
+  Future<void> updateVerboseMode(bool isVerbose) async {
+    if (_isVerboseMode == isVerbose) return;
+    _isVerboseMode = isVerbose;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('verbose_mode', isVerbose);
+  }
+
+  Future<void> updateForcedModel(String model) async {
+    if (_forcedModel == model) return;
+    _forcedModel = model;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('forced_model', model);
+  }
+
+  Future<void> updateForceGpu(bool isForced) async {
+    if (_forceGpu == isForced) return;
+    _forceGpu = isForced;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('force_gpu', isForced);
+  }
+
+  Future<void> updateShowHud(bool show) async {
+    if (_showHud == show) return;
+    _showHud = show;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('show_hud', show);
+  }
+
+  Future<void> updateAiThreadCount(int count) async {
+    if (_aiThreadCount == count) return;
+    _aiThreadCount = count;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('ai_thread_count', count);
   }
 }
