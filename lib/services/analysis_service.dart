@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'dart:ui';
+import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:camera/camera.dart';
+import 'package:image/image.dart' as img;
 import 'package:ultralytics_yolo/ultralytics_yolo.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:greenmalaysia/services/settings_service.dart';
@@ -22,6 +24,8 @@ class AnalysisService {
   YOLO? _yoloModel;
   bool _isModelLoaded = false;
   String _currentModelFile = '';
+  String _localModelPath = '';
+  bool _isGpuFallback = false;
 
   // Device info
   String _cpuModel = 'Unknown';
@@ -38,6 +42,7 @@ class AnalysisService {
   // --- Public Getters ---
   bool get isLoaded => _isModelLoaded;
   String get modelName => _currentModelFile;
+  String get localModelPath => _localModelPath;
   String get cpuModel => _cpuModel;
   int get cpuCores => _cpuCores;
   String get deviceModel => _deviceModel;
@@ -144,6 +149,7 @@ class AnalysisService {
       final settings = SettingsService();
       final bool useGpu = settings.forceGpu;
       _activeBackend = useGpu ? 'GPU (OpenCL)' : 'CPU (XNNPACK)';
+      if (!useGpu) _isGpuFallback = false; // Reset fallback state if explicitly off
       _threadCount = _determineThreadCount();
 
       debugPrint("⚙️ Backend: $_activeBackend | Threads: $_threadCount");
@@ -159,6 +165,7 @@ class AnalysisService {
       if (success) {
         _isModelLoaded = true;
         _currentModelFile = selectedModel;
+        _localModelPath = localPath;
         debugPrint("✅ Model Loaded: $selectedModel ($_activeBackend, ${_threadCount}T)");
       } else {
         debugPrint("❌ Failed to load model: $selectedModel");
@@ -183,6 +190,33 @@ class AnalysisService {
       return result;
     } catch (e) {
       debugPrint("⚠️ Prediction error: $e");
+      
+      // Automatic GPU Fallback
+      if (_activeBackend.contains('GPU') && !_isGpuFallback) {
+        debugPrint("🔄 GPU Inference failed. Falling back to CPU (XNNPACK)...");
+        _isGpuFallback = true;
+        
+        // Turn off GPU setting
+        SettingsService().updateForceGpu(false);
+        
+        // Reload model on CPU
+        await loadModel();
+        
+        // Retry prediction
+        try {
+          final Uint8List imageBytes = await imageFile.readAsBytes();
+          final stopwatch = Stopwatch()..start();
+          final result = await _predictBytes(imageBytes);
+          stopwatch.stop();
+          _lastInferenceMs = stopwatch.elapsedMilliseconds;
+          _lastPrepMs = 0;
+          return result;
+        } catch (retryError) {
+          debugPrint("⚠️ Prediction error after fallback: $retryError");
+          return [];
+        }
+      }
+      
       return [];
     }
   }
@@ -194,21 +228,100 @@ class AnalysisService {
     double? iouThreshold,
   }) async {
     if (!_isModelLoaded || _yoloModel == null) return [];
-    // Note: ultralytics_yolo handles frame conversion internally
-    // The plugin's predict method currently only accepts Uint8List bytes.
-    // Live frame detection via the plugin requires YOLOView widget or
-    // converting the CameraImage to JPEG bytes first.
-    return [];
+
+    final stopwatch = Stopwatch()..start();
+
+    // 1. Convert YUV420 CameraImage to JPEG in an isolate to prevent UI freezing
+    final Uint8List? jpegBytes = await compute(convertYUV420ToJpeg, image);
+    _lastPrepMs = stopwatch.elapsedMilliseconds;
+
+    if (jpegBytes == null) return [];
+
+    // 2. Perform Inference
+    stopwatch.reset();
+    final results = await _predictBytes(
+      jpegBytes,
+      confThreshold: confThreshold,
+      iouThreshold: iouThreshold,
+    );
+    _lastInferenceMs = stopwatch.elapsedMilliseconds;
+    stopwatch.stop();
+
+    return results;
   }
 
+  // Helper function to map YOLOView results, keeping it around just in case
+  List<Map<String, dynamic>> convertYoloResults(List<YOLOResult> results, double imageWidth, double imageHeight) {
+    return results.map((res) {
+      // YOLOView returns normalizedBox (0.0 to 1.0)
+      List<double> boxData = [
+        res.normalizedBox.left,
+        res.normalizedBox.top,
+        res.normalizedBox.right,
+        res.normalizedBox.bottom,
+      ];
+
+      return {
+        "tag": res.className,
+        "confidence": res.confidence,
+        "box": boxData,
+        "polygons": res.mask,
+        "alternatives": <Map<String, dynamic>>[],
+      };
+    }).toList();
+  }
+
+// --- Top-Level Conversion Function for Isolate ---
+Uint8List? convertYUV420ToJpeg(CameraImage image) {
+  try {
+    // Optimization 1: Skip pixels (downsample by 2) to reduce workload by 4x
+    final int inWidth = image.width;
+    final int inHeight = image.height;
+    final int outWidth = inWidth >> 1;
+    final int outHeight = inHeight >> 1;
+    
+    final int uvRowStride = image.planes[1].bytesPerRow;
+    final int uvPixelStride = image.planes[1].bytesPerPixel ?? 1;
+
+    final img.Image outImg = img.Image(width: outWidth, height: outHeight);
+
+    for (int y = 0; y < outHeight; y++) {
+      int origY = y << 1;
+      int pY = origY * image.planes[0].bytesPerRow;
+      int pUV = (origY >> 1) * uvRowStride;
+
+      for (int x = 0; x < outWidth; x++) {
+        int origX = x << 1;
+        int uvOffset = pUV + (origX >> 1) * uvPixelStride;
+
+        final yp = image.planes[0].bytes[pY + origX];
+        // Optimization 2: Fast integer math for YUV to RGB
+        final int up = image.planes[1].bytes[uvOffset] - 128;
+        final int vp = image.planes[2].bytes[uvOffset] - 128;
+
+        int r = (yp + ((359 * vp) >> 8)).clamp(0, 255);
+        int g = (yp - ((88 * up + 183 * vp) >> 8)).clamp(0, 255);
+        int b = (yp + ((454 * up) >> 8)).clamp(0, 255);
+
+        outImg.setPixelRgb(x, y, r, g, b);
+      }
+    }
+
+    // Optimization 3: Fast encode with low quality
+    return Uint8List.fromList(img.encodeJpg(outImg, quality: 50));
+  } catch (e) {
+    debugPrint("Image conversion error: $e");
+    return null;
+  }
+}
   // --- 8. Internal Prediction ---
-  Future<List<Map<String, dynamic>>> _predictBytes(Uint8List bytes) async {
+  Future<List<Map<String, dynamic>>> _predictBytes(Uint8List bytes, {double? confThreshold, double? iouThreshold}) async {
     if (_yoloModel == null) return [];
 
     final results = await _yoloModel!.predict(
       bytes,
-      confidenceThreshold: 0.35,
-      iouThreshold: 0.45,
+      confidenceThreshold: confThreshold ?? 0.35,
+      iouThreshold: iouThreshold ?? 0.45,
     );
 
     if (results['boxes'] == null) return [];

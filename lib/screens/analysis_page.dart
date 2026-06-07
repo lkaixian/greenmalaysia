@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:camera/camera.dart';
 import 'package:greenmalaysia/services/analysis_service.dart';
 import 'package:greenmalaysia/services/settings_service.dart';
 import 'package:greenmalaysia/data/recycling_data.dart';
