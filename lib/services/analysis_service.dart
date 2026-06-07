@@ -231,11 +231,16 @@ class AnalysisService {
 
     final stopwatch = Stopwatch()..start();
 
-    // 1. Convert YUV420 CameraImage to JPEG in an isolate to prevent UI freezing
-    final Uint8List? jpegBytes = await compute(convertYUV420ToJpeg, image);
+    Uint8List jpegBytes;
+    if (image.format.group == ImageFormatGroup.jpeg) {
+      jpegBytes = image.planes[0].bytes;
+    } else {
+      // 1. Convert YUV420 CameraImage to JPEG in an isolate to prevent UI freezing
+      final Uint8List? converted = await compute(convertYUV420ToJpeg, image);
+      if (converted == null) return [];
+      jpegBytes = converted;
+    }
     _lastPrepMs = stopwatch.elapsedMilliseconds;
-
-    if (jpegBytes == null) return [];
 
     // 2. Perform Inference
     stopwatch.reset();

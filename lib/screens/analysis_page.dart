@@ -70,7 +70,7 @@ class _AnalysisPageState extends State<AnalysisPage> {
       cameras[0],
       ResolutionPreset.medium,
       enableAudio: false,
-      imageFormatGroup: ImageFormatGroup.yuv420,
+      imageFormatGroup: ImageFormatGroup.jpeg,
     );
 
     await _cameraController.initialize();
